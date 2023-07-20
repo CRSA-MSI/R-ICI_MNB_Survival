@@ -1,0 +1,455 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="Site contains at least one allele that passes filters">
+##FILTER=<ID=base_qual,Description="alt median base quality">
+##FILTER=<ID=clustered_events,Description="Clustered events observed in the tumor">
+##FILTER=<ID=contamination,Description="contamination">
+##FILTER=<ID=duplicate,Description="evidence for alt allele is overrepresented by apparent duplicates">
+##FILTER=<ID=fragment,Description="abs(ref - alt) median fragment length">
+##FILTER=<ID=germline,Description="Evidence indicates this site is germline, not somatic">
+##FILTER=<ID=haplotype,Description="Variant near filtered variant on same haplotype.">
+##FILTER=<ID=low_allele_frac,Description="Allele fraction is below specified threshold">
+##FILTER=<ID=map_qual,Description="ref - alt median mapping quality">
+##FILTER=<ID=multiallelic,Description="Site filtered because too many alt alleles pass tumor LOD">
+##FILTER=<ID=n_ratio,Description="Ratio of N to alt exceeds specified ratio">
+##FILTER=<ID=normal_artifact,Description="artifact_in_normal">
+##FILTER=<ID=numt_chimera,Description="NuMT variant with too many ALT reads originally from autosome">
+##FILTER=<ID=numt_novel,Description="Alt depth is below expected coverage of NuMT in autosome">
+##FILTER=<ID=orientation,Description="orientation bias detected by the orientation bias mixture model">
+##FILTER=<ID=panel_of_normals,Description="Blacklisted site in panel of normals">
+##FILTER=<ID=position,Description="median distance of alt variants from end of reads">
+##FILTER=<ID=slippage,Description="Site filtered due to contraction of short tandem repeat region">
+##FILTER=<ID=strand_bias,Description="Evidence for alt allele comes from one read direction only">
+##FILTER=<ID=strict_strand,Description="Evidence for alt allele is not represented in both directions">
+##FILTER=<ID=weak_evidence,Description="Mutation does not meet likelihood threshold">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=AF,Number=A,Type=Float,Description="Allele fractions of alternate alleles in the tumor">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)">
+##FORMAT=<ID=F1R2,Number=R,Type=Integer,Description="Count of reads in F1R2 pair orientation supporting each allele">
+##FORMAT=<ID=F2R1,Number=R,Type=Integer,Description="Count of reads in F2R1 pair orientation supporting each allele">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=PGT,Number=1,Type=String,Description="Physical phasing haplotype information, describing how the alternate alleles are phased in relation to one another; will always be heterozygous and is not intended to describe called alleles">
+##FORMAT=<ID=PID,Number=1,Type=String,Description="Physical phasing ID information, where each unique ID within a given sample (but not across samples) connects records within a phasing group">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification">
+##FORMAT=<ID=PS,Number=1,Type=Integer,Description="Phasing set (typically the position of the first variant in the set)">
+##FORMAT=<ID=SB,Number=4,Type=Integer,Description="Per-sample component statistics which comprise the Fisher's Exact Test to detect strand bias.">
+##GATKCommandLine=<ID=FilterMutectCalls,CommandLine="FilterMutectCalls  --output RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal_RICKI-064N_S13_L001_sorted_rg_sorted_markdup_recal_filtered.vcf --contamination-table RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal_contamination.table --tumor-segmentation RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal_segments.table --orientation-bias-artifact-priors RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal_tumor-artifact-prior.tar.gz --variant RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal_RICKI-064N_S13_L001_sorted_rg_sorted_markdup_recal.vcf --reference /SCVOL01/Workspace/Letourneur/Homo_sapiens_ensembl38/Homo_sapiens.GRCh38.ensembl_91.dna.primary_assembly.fa --tmp-dir /SCVOL01/Temp/  --threshold-strategy OPTIMAL_F_SCORE --f-score-beta 1.0 --false-discovery-rate 0.05 --initial-threshold 0.1 --mitochondria-mode false --max-events-in-region 2 --max-alt-allele-count 1 --unique-alt-read-count 0 --min-median-mapping-quality 30 --min-median-base-quality 20 --max-median-fragment-length-difference 10000 --min-median-read-position 1 --max-n-ratio Infinity --min-reads-per-strand 0 --autosomal-coverage 0.0 --max-numt-fraction 0.85 --min-allele-fraction 0.0 --contamination-estimate 0.0 --log-snv-prior -13.815510557964275 --log-indel-prior -16.11809565095832 --log-artifact-prior -2.302585092994046 --normal-p-value-threshold 0.001 --min-slippage-length 8 --pcr-slippage-rate 0.1 --distance-on-haplotype 100 --long-indel-length 5 --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 40 --cloud-index-prefetch-buffer -1 --disable-bam-index-caching false --sites-only-vcf-output false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --gcs-project-for-requester-pays  --disable-tool-default-read-filters false",Version="4.1.6.0",Date="22 juillet 2021 18:26:17 CEST">
+##GATKCommandLine=<ID=Mutect2,CommandLine="Mutect2  --f1r2-tar-gz f1r2.tar.gz --tumor-sample RICKI-064T_S14_L001_sorted --normal-sample RICKI-064N_S13_L001_sorted --panel-of-normals /SCVOL01/Workspace/Letourneur/Nextflow_mutect2_ricki/8f/9bb732f2f42d75af79f22673e4c842/pon.vcf.gz --germline-resource /SCVOL01/Workspace/Letourneur/Homo_sapiens_ensembl38/af-only-gnomad.Homo_sapiens.ensembl.hg38.vcf.gz --af-of-alleles-not-in-resource 2.5E-6 --bam-output RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal_RICKI-064N_S13_L001_sorted_rg_sorted_markdup_recal.bam --output RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal_RICKI-064N_S13_L001_sorted_rg_sorted_markdup_recal.vcf --intervals /SCVOL01/Projects/RICKI/210311_HG38_1000010903_ICK_res_5plex_capture_targets_wo_chr.bed --input RICKI-064T_S14_L001_sorted_rg_sorted_markdup_recal.bam --input RICKI-064N_S13_L001_sorted_rg_sorted_markdup_recal.bam --reference /SCVOL01/Workspace/Letourneur/Homo_sapiens_ensembl38/Homo_sapiens.GRCh38.ensembl_91.dna.primary_assembly.fa --tmp-dir /SCVOL01/Temp/  --f1r2-median-mq 50 --f1r2-min-bq 20 --f1r2-max-depth 200 --genotype-pon-sites false --genotype-germline-sites false --mitochondria-mode false --tumor-lod-to-emit 3.0 --initial-tumor-lod 2.0 --pcr-snv-qual 40 --pcr-indel-qual 40 --max-population-af 0.01 --downsampling-stride 1 --callable-depth 10 --max-suspicious-reads-per-alignment-start 0 --normal-lod 2.2 --ignore-itr-artifacts false --gvcf-lod-band -2.5 --gvcf-lod-band -2.0 --gvcf-lod-band -1.5 --gvcf-lod-band -1.0 --gvcf-lod-band -0.5 --gvcf-lod-band 0.0 --gvcf-lod-band 0.5 --gvcf-lod-band 1.0 --minimum-allele-fraction 0.0 --independent-mates false --disable-adaptive-pruning false --kmer-size 10 --kmer-size 25 --dont-increase-kmer-sizes-for-cycles false --allow-non-unique-kmers-in-ref false --num-pruning-samples 1 --min-dangling-branch-length 4 --recover-all-dangling-branches false --max-num-haplotypes-in-population 128 --min-pruning 2 --adaptive-pruning-initial-error-rate 0.001 --pruning-lod-threshold 2.302585092994046 --max-unpruned-variants 100 --linked-de-bruijn-graph false --disable-artificial-haplotype-recovery false --debug-assembly false --debug-graph-transformations false --capture-assembly-failure-bam false --error-correction-log-odds -Infinity --error-correct-reads false --kmer-length-for-read-error-correction 25 --min-observations-for-kmer-to-be-solid 20 --base-quality-score-threshold 18 --pair-hmm-gap-continuation-penalty 10 --pair-hmm-implementation FASTEST_AVAILABLE --pcr-indel-model CONSERVATIVE --phred-scaled-global-read-mismapping-rate 45 --native-pair-hmm-threads 4 --native-pair-hmm-use-double-precision false --bam-writer-type CALLED_HAPLOTYPES --dont-use-soft-clipped-bases false --min-base-quality-score 10 --smith-waterman JAVA --emit-ref-confidence NONE --max-mnp-distance 1 --force-call-filtered-alleles false --allele-informative-reads-overlap-margin 2 --min-assembly-region-size 50 --max-assembly-region-size 300 --active-probability-threshold 0.002 --max-prob-propagation-distance 50 --force-active false --assembly-region-padding 100 --padding-around-indels 75 --padding-around-snps 20 --padding-around-strs 75 --max-reads-per-alignment-start 50 --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 40 --cloud-index-prefetch-buffer -1 --disable-bam-index-caching false --sites-only-vcf-output false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --gcs-project-for-requester-pays  --disable-tool-default-read-filters false --max-read-length 2147483647 --min-read-length 30 --minimum-mapping-quality 20 --disable-tool-default-annotations false --enable-all-annotations false",Version="4.1.6.0",Date="22 juillet 2021 18:18:11 CEST">
+##INFO=<ID=CONTQ,Number=1,Type=Float,Description="Phred-scaled qualities that alt allele are not due to contamination">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth; some reads may have been filtered">
+##INFO=<ID=ECNT,Number=1,Type=Integer,Description="Number of events in this haplotype">
+##INFO=<ID=GERMQ,Number=1,Type=Integer,Description="Phred-scaled quality that alt alleles are not germline variants">
+##INFO=<ID=MBQ,Number=R,Type=Integer,Description="median base quality">
+##INFO=<ID=MFRL,Number=R,Type=Integer,Description="median fragment length">
+##INFO=<ID=MMQ,Number=R,Type=Integer,Description="median mapping quality">
+##INFO=<ID=MPOS,Number=A,Type=Integer,Description="median distance from end of read">
+##INFO=<ID=NALOD,Number=A,Type=Float,Description="Negative log 10 odds of artifact in normal with same allele fraction as tumor">
+##INFO=<ID=NCount,Number=1,Type=Integer,Description="Count of N bases in the pileup">
+##INFO=<ID=NLOD,Number=A,Type=Float,Description="Normal log 10 likelihood ratio of diploid het or hom alt genotypes">
+##INFO=<ID=OCM,Number=1,Type=Integer,Description="Number of alt reads whose original alignment doesn't match the current contig.">
+##INFO=<ID=PON,Number=0,Type=Flag,Description="site found in panel of normals">
+##INFO=<ID=POPAF,Number=A,Type=Float,Description="negative log 10 population allele frequencies of alt alleles">
+##INFO=<ID=ROQ,Number=1,Type=Float,Description="Phred-scaled qualities that alt allele are not due to read orientation artifact">
+##INFO=<ID=RPA,Number=.,Type=Integer,Description="Number of times tandem repeat unit is repeated, for each allele (including reference)">
+##INFO=<ID=RU,Number=1,Type=String,Description="Tandem repeat unit (bases)">
+##INFO=<ID=SEQQ,Number=1,Type=Integer,Description="Phred-scaled quality that alt alleles are not sequencing errors">
+##INFO=<ID=STR,Number=0,Type=Flag,Description="Variant is a short tandem repeat">
+##INFO=<ID=STRANDQ,Number=1,Type=Integer,Description="Phred-scaled quality of strand bias artifact">
+##INFO=<ID=STRQ,Number=1,Type=Integer,Description="Phred-scaled quality that alt alleles in STRs are not polymerase slippage errors">
+##INFO=<ID=TLOD,Number=A,Type=Float,Description="Log 10 likelihood ratio score of variant existing versus not existing">
+##INFO=<ID=UNIQ_ALT_READ_COUNT,Number=1,Type=Integer,Description="Number of ALT reads with unique start and mate end positions at a variant site">
+##MutectVersion=2.2
+##contig=<ID=1,length=248956422>
+##contig=<ID=10,length=133797422>
+##contig=<ID=11,length=135086622>
+##contig=<ID=12,length=133275309>
+##contig=<ID=13,length=114364328>
+##contig=<ID=14,length=107043718>
+##contig=<ID=15,length=101991189>
+##contig=<ID=16,length=90338345>
+##contig=<ID=17,length=83257441>
+##contig=<ID=18,length=80373285>
+##contig=<ID=19,length=58617616>
+##contig=<ID=2,length=242193529>
+##contig=<ID=20,length=64444167>
+##contig=<ID=21,length=46709983>
+##contig=<ID=22,length=50818468>
+##contig=<ID=3,length=198295559>
+##contig=<ID=4,length=190214555>
+##contig=<ID=5,length=181538259>
+##contig=<ID=6,length=170805979>
+##contig=<ID=7,length=159345973>
+##contig=<ID=8,length=145138636>
+##contig=<ID=9,length=138394717>
+##contig=<ID=MT,length=16569>
+##contig=<ID=X,length=156040895>
+##contig=<ID=Y,length=57227415>
+##contig=<ID=KI270728.1,length=1872759>
+##contig=<ID=KI270727.1,length=448248>
+##contig=<ID=KI270442.1,length=392061>
+##contig=<ID=KI270729.1,length=280839>
+##contig=<ID=GL000225.1,length=211173>
+##contig=<ID=KI270743.1,length=210658>
+##contig=<ID=GL000008.2,length=209709>
+##contig=<ID=GL000009.2,length=201709>
+##contig=<ID=KI270747.1,length=198735>
+##contig=<ID=KI270722.1,length=194050>
+##contig=<ID=GL000194.1,length=191469>
+##contig=<ID=KI270742.1,length=186739>
+##contig=<ID=GL000205.2,length=185591>
+##contig=<ID=GL000195.1,length=182896>
+##contig=<ID=KI270736.1,length=181920>
+##contig=<ID=KI270733.1,length=179772>
+##contig=<ID=GL000224.1,length=179693>
+##contig=<ID=GL000219.1,length=179198>
+##contig=<ID=KI270719.1,length=176845>
+##contig=<ID=GL000216.2,length=176608>
+##contig=<ID=KI270712.1,length=176043>
+##contig=<ID=KI270706.1,length=175055>
+##contig=<ID=KI270725.1,length=172810>
+##contig=<ID=KI270744.1,length=168472>
+##contig=<ID=KI270734.1,length=165050>
+##contig=<ID=GL000213.1,length=164239>
+##contig=<ID=GL000220.1,length=161802>
+##contig=<ID=KI270715.1,length=161471>
+##contig=<ID=GL000218.1,length=161147>
+##contig=<ID=KI270749.1,length=158759>
+##contig=<ID=KI270741.1,length=157432>
+##contig=<ID=GL000221.1,length=155397>
+##contig=<ID=KI270716.1,length=153799>
+##contig=<ID=KI270731.1,length=150754>
+##contig=<ID=KI270751.1,length=150742>
+##contig=<ID=KI270750.1,length=148850>
+##contig=<ID=KI270519.1,length=138126>
+##contig=<ID=GL000214.1,length=137718>
+##contig=<ID=KI270708.1,length=127682>
+##contig=<ID=KI270730.1,length=112551>
+##contig=<ID=KI270438.1,length=112505>
+##contig=<ID=KI270737.1,length=103838>
+##contig=<ID=KI270721.1,length=100316>
+##contig=<ID=KI270738.1,length=99375>
+##contig=<ID=KI270748.1,length=93321>
+##contig=<ID=KI270435.1,length=92983>
+##contig=<ID=GL000208.1,length=92689>
+##contig=<ID=KI270538.1,length=91309>
+##contig=<ID=KI270756.1,length=79590>
+##contig=<ID=KI270739.1,length=73985>
+##contig=<ID=KI270757.1,length=71251>
+##contig=<ID=KI270709.1,length=66860>
+##contig=<ID=KI270746.1,length=66486>
+##contig=<ID=KI270753.1,length=62944>
+##contig=<ID=KI270589.1,length=44474>
+##contig=<ID=KI270726.1,length=43739>
+##contig=<ID=KI270735.1,length=42811>
+##contig=<ID=KI270711.1,length=42210>
+##contig=<ID=KI270745.1,length=41891>
+##contig=<ID=KI270714.1,length=41717>
+##contig=<ID=KI270732.1,length=41543>
+##contig=<ID=KI270713.1,length=40745>
+##contig=<ID=KI270754.1,length=40191>
+##contig=<ID=KI270710.1,length=40176>
+##contig=<ID=KI270717.1,length=40062>
+##contig=<ID=KI270724.1,length=39555>
+##contig=<ID=KI270720.1,length=39050>
+##contig=<ID=KI270723.1,length=38115>
+##contig=<ID=KI270718.1,length=38054>
+##contig=<ID=KI270317.1,length=37690>
+##contig=<ID=KI270740.1,length=37240>
+##contig=<ID=KI270755.1,length=36723>
+##contig=<ID=KI270707.1,length=32032>
+##contig=<ID=KI270579.1,length=31033>
+##contig=<ID=KI270752.1,length=27745>
+##contig=<ID=KI270512.1,length=22689>
+##contig=<ID=KI270322.1,length=21476>
+##contig=<ID=GL000226.1,length=15008>
+##contig=<ID=KI270311.1,length=12399>
+##contig=<ID=KI270366.1,length=8320>
+##contig=<ID=KI270511.1,length=8127>
+##contig=<ID=KI270448.1,length=7992>
+##contig=<ID=KI270521.1,length=7642>
+##contig=<ID=KI270581.1,length=7046>
+##contig=<ID=KI270582.1,length=6504>
+##contig=<ID=KI270515.1,length=6361>
+##contig=<ID=KI270588.1,length=6158>
+##contig=<ID=KI270591.1,length=5796>
+##contig=<ID=KI270522.1,length=5674>
+##contig=<ID=KI270507.1,length=5353>
+##contig=<ID=KI270590.1,length=4685>
+##contig=<ID=KI270584.1,length=4513>
+##contig=<ID=KI270320.1,length=4416>
+##contig=<ID=KI270382.1,length=4215>
+##contig=<ID=KI270468.1,length=4055>
+##contig=<ID=KI270467.1,length=3920>
+##contig=<ID=KI270362.1,length=3530>
+##contig=<ID=KI270517.1,length=3253>
+##contig=<ID=KI270593.1,length=3041>
+##contig=<ID=KI270528.1,length=2983>
+##contig=<ID=KI270587.1,length=2969>
+##contig=<ID=KI270364.1,length=2855>
+##contig=<ID=KI270371.1,length=2805>
+##contig=<ID=KI270333.1,length=2699>
+##contig=<ID=KI270374.1,length=2656>
+##contig=<ID=KI270411.1,length=2646>
+##contig=<ID=KI270414.1,length=2489>
+##contig=<ID=KI270510.1,length=2415>
+##contig=<ID=KI270390.1,length=2387>
+##contig=<ID=KI270375.1,length=2378>
+##contig=<ID=KI270420.1,length=2321>
+##contig=<ID=KI270509.1,length=2318>
+##contig=<ID=KI270315.1,length=2276>
+##contig=<ID=KI270302.1,length=2274>
+##contig=<ID=KI270518.1,length=2186>
+##contig=<ID=KI270530.1,length=2168>
+##contig=<ID=KI270304.1,length=2165>
+##contig=<ID=KI270418.1,length=2145>
+##contig=<ID=KI270424.1,length=2140>
+##contig=<ID=KI270417.1,length=2043>
+##contig=<ID=KI270508.1,length=1951>
+##contig=<ID=KI270303.1,length=1942>
+##contig=<ID=KI270381.1,length=1930>
+##contig=<ID=KI270529.1,length=1899>
+##contig=<ID=KI270425.1,length=1884>
+##contig=<ID=KI270396.1,length=1880>
+##contig=<ID=KI270363.1,length=1803>
+##contig=<ID=KI270386.1,length=1788>
+##contig=<ID=KI270465.1,length=1774>
+##contig=<ID=KI270383.1,length=1750>
+##contig=<ID=KI270384.1,length=1658>
+##contig=<ID=KI270330.1,length=1652>
+##contig=<ID=KI270372.1,length=1650>
+##contig=<ID=KI270548.1,length=1599>
+##contig=<ID=KI270580.1,length=1553>
+##contig=<ID=KI270387.1,length=1537>
+##contig=<ID=KI270391.1,length=1484>
+##contig=<ID=KI270305.1,length=1472>
+##contig=<ID=KI270373.1,length=1451>
+##contig=<ID=KI270422.1,length=1445>
+##contig=<ID=KI270316.1,length=1444>
+##contig=<ID=KI270340.1,length=1428>
+##contig=<ID=KI270338.1,length=1428>
+##contig=<ID=KI270583.1,length=1400>
+##contig=<ID=KI270334.1,length=1368>
+##contig=<ID=KI270429.1,length=1361>
+##contig=<ID=KI270393.1,length=1308>
+##contig=<ID=KI270516.1,length=1300>
+##contig=<ID=KI270389.1,length=1298>
+##contig=<ID=KI270466.1,length=1233>
+##contig=<ID=KI270388.1,length=1216>
+##contig=<ID=KI270544.1,length=1202>
+##contig=<ID=KI270310.1,length=1201>
+##contig=<ID=KI270412.1,length=1179>
+##contig=<ID=KI270395.1,length=1143>
+##contig=<ID=KI270376.1,length=1136>
+##contig=<ID=KI270337.1,length=1121>
+##contig=<ID=KI270335.1,length=1048>
+##contig=<ID=KI270378.1,length=1048>
+##contig=<ID=KI270379.1,length=1045>
+##contig=<ID=KI270329.1,length=1040>
+##contig=<ID=KI270419.1,length=1029>
+##contig=<ID=KI270336.1,length=1026>
+##contig=<ID=KI270312.1,length=998>
+##contig=<ID=KI270539.1,length=993>
+##contig=<ID=KI270385.1,length=990>
+##contig=<ID=KI270423.1,length=981>
+##contig=<ID=KI270392.1,length=971>
+##contig=<ID=KI270394.1,length=970>
+##filtering_status=These calls have been filtered by FilterMutectCalls to label false positives with a list of failed filters and true positives with PASS.
+##normal_sample=RICKI-064N_S13_L001_sorted
+##source=FilterMutectCalls
+##source=Mutect2
+##tumor_sample=RICKI-064T_S14_L001_sorted
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	RICKI-064N_S13_L001_sorted	RICKI-064T_S14_L001_sorted
+1	1213110	.	TG	T	.	normal_artifact;weak_evidence	CONTQ=93;DP=522;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=108,116;MMQ=60,60;MPOS=25;NALOD=1.89;NLOD=27.75;POPAF=4.61;ROQ=93;RPA=7,6;RU=G;SEQQ=1;STR;STRANDQ=93;STRQ=93;TLOD=3.39	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:184,5:0.014:189:91,2:75,3:92,92,3,2	0/1:242,15:0.052:257:105,6:103,8:122,120,7,8
+1	1213120	.	G	A	.	orientation;weak_evidence	CONTQ=93;DP=482;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=108,115;MMQ=60,60;MPOS=19;NALOD=2.05;NLOD=32.77;POPAF=5.60;ROQ=5;SEQQ=1;STRANDQ=32;TLOD=3.72	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:203,0:8.920e-03:203:103,0:96,0:100,103,0,0	0/1:259,4:0.021:263:131,2:115,2:130,129,2,2
+1	6593502	.	G	C	.	haplotype;orientation;weak_evidence	CONTQ=93;DP=553;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=112,87;MMQ=60,60;MPOS=23;NALOD=2.05;NLOD=33.41;POPAF=5.60;ROQ=1;SEQQ=2;STRANDQ=22;TLOD=4.52	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:214,0:8.850e-03:214:96,0:111,0:0|1:6593502_G_C:6593502:105,109,0,0	0|1:333,2:0.011:335:150,0:173,2:0|1:6593502_G_C:6593502:166,167,1,1
+1	6593508	.	AGGTGGG	A	.	haplotype;weak_evidence	CONTQ=93;DP=581;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=112,87;MMQ=60,60;MPOS=17;NALOD=2.05;NLOD=33.72;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.47	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:216,0:8.772e-03:216:92,0:110,0:0|1:6593502_G_C:6593502:106,110,0,0	0|1:360,2:0.011:362:158,0:178,2:0|1:6593502_G_C:6593502:179,181,1,1
+1	6599046	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=423;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=114,142;MMQ=60,60;MPOS=49;NALOD=-8.207e-01;NLOD=28.79;POPAF=5.60;ROQ=6;SEQQ=1;STRANDQ=34;TLOD=4.04	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:211,2:0.018:213:109,0:100,2:104,107,1,1	0/1:199,4:0.027:203:96,2:98,2:100,99,2,2
+1	18877572	.	G	A	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=425;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=114,186;MMQ=60,60;MPOS=43;NALOD=-9.914e-01;NLOD=22.46;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=31;TLOD=3.64	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:154,2:0.021:156:75,2:77,0:87,67,1,1	0/1:253,4:0.020:257:129,4:120,0:143,110,2,2
+1	35014925	.	G	T	.	PASS	CONTQ=93;DP=287;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=119,99;MMQ=60,60;MPOS=10;NALOD=1.85;NLOD=20.72;POPAF=5.60;ROQ=62;SEQQ=93;STRANDQ=86;TLOD=19.32	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:133,0:0.014:133:67,0:63,0:66,67,0,0	0/1:139,12:0.086:151:66,6:68,6:69,70,6,6
+1	35014936	.	TA	T	.	normal_artifact;panel_of_normals;slippage;weak_evidence	CONTQ=93;DP=301;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=115,113;MMQ=60,60;MPOS=27;NALOD=1.42;NLOD=18.61;PON;POPAF=5.60;ROQ=93;RPA=9,8;RU=A;SEQQ=2;STR;STRANDQ=93;STRQ=1;TLOD=3.75	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:132,2:0.024:134:66,2:66,0:65,67,1,1	0/1:135,11:0.084:146:63,9:71,2:67,68,5,6
+1	88684467	.	GTTT	G,GTT	.	germline;multiallelic;normal_artifact;panel_of_normals	CONTQ=93;DP=309;ECNT=1;GERMQ=1;MBQ=20,20,20;MFRL=129,92,127;MMQ=60,60,60;MPOS=32,26;NALOD=-1.928e+00,-7.757e+01;NLOD=3.43,-8.387e+01;PON;POPAF=4.01,1.11;ROQ=93;RPA=13,10,12;RU=T;SEQQ=93;STR;STRANDQ=93;STRQ=93;TLOD=16.03,59.46	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:28,3,85:0.040,0.747:116:9,3,43:15,0,36:14,14,40,48	0/1/2:17,20,74:0.184,0.672:111:9,4,44:7,15,24:9,8,46,48
+1	88983595	.	C	T	.	normal_artifact;orientation;panel_of_normals;weak_evidence	CONTQ=93;DP=223;ECNT=1;GERMQ=93;MBQ=20,23;MFRL=137,59;MMQ=60,45;MPOS=17;NALOD=-6.199e+00;NLOD=8.28;PON;POPAF=0.654;ROQ=1;SEQQ=1;STRANDQ=33;TLOD=3.84	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:129,5:0.055:134:67,4:62,1:63,66,3,2	0/1:75,3:0.090:78:51,1:24,2:39,36,1,2
+1	150272936	.	G	A	.	orientation;weak_evidence	CONTQ=93;DP=437;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=111,98;MMQ=60,60;MPOS=45;NALOD=1.85;NLOD=41.54;POPAF=5.60;ROQ=1;SEQQ=6;STRANDQ=37;TLOD=5.44	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:266,0:7.066e-03:266:124,0:140,0:132,134,0,0	0/1:153,4:0.025:157:85,2:68,0:76,77,2,2
+1	150622878	.	GAAAA	G	.	PASS	CONTQ=93;DP=125;ECNT=1;GERMQ=61;MBQ=20,20;MFRL=139,106;MMQ=60,60;MPOS=41;NALOD=0.798;NLOD=8.97;POPAF=3.31;ROQ=93;RPA=14,10;RU=A;SEQQ=93;STR;STRANDQ=93;STRQ=93;TLOD=18.65	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:56,0:0.030:56:8,0:36,0:27,29,0,0	0/1:39,14:0.267:53:13,8:19,5:19,20,7,7
+1	152304753	.	C	T	.	PASS	CONTQ=93;DP=601;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=120,106;MMQ=60,60;MPOS=18;NALOD=2.23;NLOD=49.96;POPAF=2.69;ROQ=33;SEQQ=93;STRANDQ=93;TLOD=47.67	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:311,0:5.898e-03:311:163,0:146,0:158,153,0,0	0/1:247,30:0.123:277:141,9:105,21:123,124,16,14
+1	152311376	.	C	T	.	orientation;weak_evidence	CONTQ=93;DP=384;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=124,117;MMQ=60,55;MPOS=12;NALOD=2.02;NLOD=30.72;POPAF=4.61;ROQ=6;SEQQ=1;STRANDQ=35;TLOD=4.05	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:191,0:9.536e-03:191:92,0:98,0:99,92,0,0	0/1:183,4:0.029:187:90,2:92,2:94,89,2,2
+1	152311393	.	TG	T	.	PASS	CONTQ=93;DP=348;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=126,101;MMQ=60,60;MPOS=37;NALOD=1.96;NLOD=27.33;POPAF=5.60;ROQ=93;RPA=2,1;RU=G;SEQQ=6;STR;STRANDQ=49;STRQ=93;TLOD=4.81	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:175,2:0.011:177:80,2:93,0:89,86,1,1	0/1:164,4:0.031:168:83,0:80,4:82,82,2,2
+1	155060295	.	G	A	.	orientation	CONTQ=93;DP=264;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=117,91;MMQ=60,60;MPOS=28;NALOD=1.88;NLOD=22.57;POPAF=4.61;ROQ=1;SEQQ=93;STRANDQ=93;TLOD=19.99	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:144,0:0.013:144:67,0:76,0:74,70,0,0	0/1:108,12:0.108:120:36,2:71,10:55,53,6,6
+1	159062696	.	G	GT	.	normal_artifact;panel_of_normals;slippage;weak_evidence	CONTQ=93;DP=322;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=109,127;MMQ=60,60;MPOS=21;NALOD=-5.980e+00;NLOD=7.07;PON;POPAF=2.16;ROQ=93;RPA=10,11;RU=T;SEQQ=1;STR;STRANDQ=93;STRQ=1;TLOD=3.16	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:172,22:0.114:194:97,5:73,15:87,85,12,10	0/1:101,11:0.109:112:49,8:49,2:51,50,6,5
+10	13656765	.	G	A	.	clustered_events;orientation;weak_evidence	CONTQ=93;DP=548;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=108,109;MMQ=60,60;MPOS=39;NALOD=2.05;NLOD=33.11;POPAF=5.60;ROQ=4;SEQQ=1;STRANDQ=30;TLOD=3.53	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:213,0:8.895e-03:213:103,0:110,0:106,107,0,0	0/1:317,4:0.018:321:152,2:164,2:158,159,2,2
+10	13656781	.	G	A	.	clustered_events;normal_artifact;orientation;weak_evidence	CONTQ=93;DP=558;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=107,105;MMQ=60,60;MPOS=37;NALOD=-8.510e-01;NLOD=27.25;POPAF=4.61;ROQ=1;SEQQ=2;STRANDQ=22;TLOD=4.52	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:202,2:0.018:204:91,2:107,0:98,104,1,1	0/1:330,2:0.011:332:169,0:158,2:162,168,1,1
+10	13656786	.	A	T	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=559;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=106,87;MMQ=60,60;MPOS=9;NALOD=2.03;NLOD=31.91;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=22;TLOD=4.47	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:204,0:9.259e-03:204:94,0:94,0:0|1:13656786_A_T:13656786:100,104,0,0	0|1:353,2:0.011:355:170,0:161,2:0|1:13656786_A_T:13656786:173,180,1,1
+10	13656788	.	C	CCA	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=555;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=106,87;MMQ=60,60;MPOS=7;NALOD=2.01;NLOD=30.40;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=27;TLOD=4.46	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:196,0:9.709e-03:196:90,0:95,0:0|1:13656786_A_T:13656786:97,99,0,0	0|1:357,2:0.011:359:174,0:163,2:0|1:13656786_A_T:13656786:175,182,1,1
+10	13656790	.	C	CGT	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=548;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=108,87;MMQ=60,60;MPOS=3;NALOD=2.00;NLOD=30.10;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=28;TLOD=4.48	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:194,0:9.804e-03:194:91,0:89,0:0|1:13656786_A_T:13656786:96,98,0,0	0|1:348,2:0.011:350:172,0:164,2:0|1:13656786_A_T:13656786:170,178,1,1
+10	20176986	.	CT	C	.	normal_artifact;slippage;weak_evidence	CONTQ=93;DP=269;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=124,119;MMQ=60,60;MPOS=38;NALOD=0.992;NLOD=22.42;POPAF=3.43;ROQ=93;RPA=8,7;RU=T;SEQQ=1;STR;STRANDQ=80;STRQ=1;TLOD=3.29	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:152,2:0.020:154:74,2:75,0:75,77,1,1	0/1:92,7:0.090:99:47,4:44,3:45,47,4,3
+11	799874	.	G	A	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=637;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,87;MMQ=60,60;MPOS=33;NALOD=-6.005e-01;NLOD=38.37;POPAF=4.61;ROQ=7;SEQQ=1;STRANDQ=29;TLOD=3.29	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:260,2:0.014:262:131,2:124,0:136,124,1,1	0/1:360,4:0.015:364:167,2:183,2:185,175,2,2
+11	800750	.	CCG	C	.	clustered_events;haplotype;normal_artifact	CONTQ=93;DP=338;ECNT=6;GERMQ=93;MBQ=20,33;MFRL=135,125;MMQ=60,60;MPOS=2;NALOD=-1.262e+01;NLOD=5.48;POPAF=5.60;ROQ=93;SEQQ=93;STRANDQ=65;TLOD=19.79	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:140,4:0.037:144:66,2:70,2:0|1:800750_CCG_C:800750:69,71,2,2	0|1:181,6:0.039:187:84,0:84,6:0|1:800750_CCG_C:800750:92,89,3,3
+11	800758	.	C	CGAAA	.	clustered_events;haplotype;normal_artifact	CONTQ=93;DP=356;ECNT=6;GERMQ=93;MBQ=20,20;MFRL=131,125;MMQ=60,60;MPOS=8;NALOD=-1.256e+01;NLOD=6.68;POPAF=5.60;ROQ=93;SEQQ=93;STRANDQ=93;TLOD=19.67	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:149,4:0.036:153:71,2:70,2:0|1:800750_CCG_C:800750:73,76,2,2	0|1:196,7:0.037:203:96,0:89,6:0|1:800750_CCG_C:800750:99,97,3,4
+11	800761	.	CCT	AGG	.	clustered_events;normal_artifact;orientation;weak_evidence	CONTQ=93;DP=397;ECNT=6;GERMQ=93;MBQ=20,28;MFRL=127,125;MMQ=60,60;MPOS=15;NALOD=-3.831e+00;NLOD=9.09;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=45;TLOD=3.11	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:164,4:0.033:168:71,2:75,2:80,84,2,2	0/1:222,7:0.033:229:105,0:95,5:112,110,3,4
+11	800792	.	CTG	C	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=468;ECNT=6;GERMQ=93;MBQ=20,33;MFRL=119,94;MMQ=60,60;MPOS=4;NALOD=1.99;NLOD=28.90;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=31;TLOD=7.25	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:174,0:0.010:174:81,0:85,0:0|1:800792_CTG_C:800792:86,88,0,0	0|1:288,3:0.019:291:142,3:130,0:0|1:800792_CTG_C:800792:145,143,1,2
+11	800797	.	C	G	.	clustered_events;haplotype;orientation	CONTQ=93;DP=475;ECNT=6;GERMQ=93;MBQ=20,28;MFRL=118,94;MMQ=60,60;MPOS=7;NALOD=1.99;NLOD=29.20;POPAF=5.60;ROQ=1;SEQQ=23;STRANDQ=24;TLOD=7.22	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:177,0:0.010:177:90,0:81,0:0|1:800792_CTG_C:800792:87,90,0,0	0|1:295,3:0.019:298:149,3:134,0:0|1:800792_CTG_C:800792:148,147,1,2
+11	800799	.	G	GCA	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=478;ECNT=6;GERMQ=93;MBQ=20,32;MFRL=117,94;MMQ=60,60;MPOS=9;NALOD=1.69;NLOD=28.60;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=31;TLOD=7.53	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:174,0:0.010:174:92,0:79,0:0|1:800792_CTG_C:800792:86,88,0,0	0|1:290,3:0.019:293:153,3:137,0:0|1:800792_CTG_C:800792:145,145,1,2
+11	60936455	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=381;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,159;MMQ=60,60;MPOS=44;NALOD=-9.972e-01;NLOD=23.05;POPAF=4.31;ROQ=8;SEQQ=1;STRANDQ=34;TLOD=4.07	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:175,2:0.021:177:82,0:92,2:84,91,1,1	0/1:189,4:0.029:193:91,2:96,2:97,92,2,2
+11	64223011	.	G	GCTCCACCC	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=659;ECNT=3;GERMQ=93;MBQ=20,26;MFRL=112,58;MMQ=60,60;MPOS=10;NALOD=1.71;NLOD=45.46;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.55	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:293,0:6.536e-03:293:136,0:149,0:0|1:64223011_G_GCTCCACCC:64223011:148,145,0,0	0|1:353,4:0.016:357:180,2:167,2:0|1:64223011_G_GCTCCACCC:64223011:176,177,2,2
+11	64223013	.	G	GCATGGCCA	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=667;ECNT=3;GERMQ=93;MBQ=20,27;MFRL=112,58;MMQ=60,60;MPOS=10;NALOD=1.72;NLOD=45.85;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.54	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:295,0:6.432e-03:295:138,0:154,0:0|1:64223011_G_GCTCCACCC:64223011:149,146,0,0	0|1:353,4:0.016:357:184,2:168,2:0|1:64223011_G_GCTCCACCC:64223011:176,177,2,2
+11	64223063	.	G	A	.	clustered_events;normal_artifact;orientation	CONTQ=93;DP=602;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=115,107;MMQ=60,60;MPOS=44;NALOD=-3.421e+00;NLOD=33.71;POPAF=5.60;ROQ=1;SEQQ=14;STRANDQ=38;TLOD=6.32	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:268,4:0.020:272:115,0:144,4:128,140,2,2	0/1:308,6:0.024:314:161,6:145,0:152,156,3,3
+11	66857759	.	CCTG	C	.	normal_artifact;panel_of_normals;slippage	CONTQ=93;DP=418;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=122,114;MMQ=60,60;MPOS=25;NALOD=-6.238e+00;NLOD=12.94;PON;POPAF=3.76;ROQ=93;RPA=5,4;RU=CTG;SEQQ=93;STR;STRANDQ=93;STRQ=1;TLOD=21.80	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:151,4:0.035:155:67,4:74,0:78,73,2,2	0/1:233,11:0.052:244:101,7:120,4:122,111,6,5
+11	87157319	.	GTTT	G,GT,GTT	.	germline;multiallelic;normal_artifact;panel_of_normals	CONTQ=93;DP=300;ECNT=1;GERMQ=1;MBQ=20,20,20,20;MFRL=116,116,124,127;MMQ=60,60,60,60;MPOS=19,21,38;NALOD=1.27,-9.368e+00,-4.287e+01;NLOD=9.22,-1.996e+01,-5.641e+01;PON;POPAF=4.61,5.60,2.90;ROQ=93;RPA=12,9,10,11;RU=T;SEQQ=93;STR;STRANDQ=93;STRQ=93;TLOD=16.10,3.20,26.54	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:80,0,20,61:0.011,0.122,0.389:161:40,0,4,38:29,0,16,19:40,40,40,41	0/1/2/3:50,20,10,41:0.162,0.085,0.328:121:30,16,6,9:17,4,2,31:26,24,35,36
+12	49632616	.	C	CCGGA	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=507;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=112,89;MMQ=60,60;MPOS=12;NALOD=2.05;NLOD=33.41;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=38;TLOD=4.64	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:213,0:8.850e-03:213:99,0:107,0:0|1:49632616_C_CCGGA:49632616:104,109,0,0	0|1:292,2:0.013:294:143,0:143,2:0|1:49632616_C_CCGGA:49632616:148,144,1,1
+12	49632618	.	C	CCGT	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=505;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=113,89;MMQ=60,60;MPOS=6;NALOD=2.05;NLOD=33.11;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=38;TLOD=4.64	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:211,0:8.929e-03:211:98,0:106,0:0|1:49632616_C_CCGGA:49632616:103,108,0,0	0|1:292,2:0.013:294:140,0:141,2:0|1:49632616_C_CCGGA:49632616:148,144,1,1
+12	49632620	.	A	T	.	clustered_events;orientation;weak_evidence	CONTQ=93;DP=506;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=110,89;MMQ=60,60;MPOS=1;NALOD=2.04;NLOD=32.50;POPAF=5.60;ROQ=1;SEQQ=2;STRANDQ=23;TLOD=4.67	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:206,0:8.996e-03:206:97,0:108,0:100,106,0,0	0/1:276,2:0.014:278:127,0:142,2:138,138,1,1
+12	49632670	.	G	A	.	clustered_events;orientation	CONTQ=93;DP=282;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=123,113;MMQ=60,60;MPOS=27;NALOD=1.77;NLOD=16.85;POPAF=5.60;ROQ=3;SEQQ=27;STRANDQ=48;TLOD=7.60	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:107,0:0.017:107:42,0:63,0:52,55,0,0	0/1:153,6:0.046:159:74,4:77,2:75,78,3,3
+12	53059118	.	AC	A	.	PASS	CONTQ=93;DP=238;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=120,128;MMQ=60,60;MPOS=33;NALOD=1.36;NLOD=12.69;POPAF=4.61;ROQ=93;RPA=7,6;RU=C;SEQQ=26;STR;STRANDQ=89;STRQ=93;TLOD=6.88	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:78,0:0.022:78:45,0:32,0:41,37,0,0	0/1:133,8:0.063:141:53,2:72,5:68,65,4,4
+12	57525993	.	A	G	.	haplotype;panel_of_normals;weak_evidence	CONTQ=93;DP=227;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=97,63;MMQ=60,60;MPOS=22;NALOD=1.62;NLOD=12.34;PON;POPAF=5.60;ROQ=15;SEQQ=5;STRANDQ=38;TLOD=5.29	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:81,0:0.023:81:20,0:61,0:0|1:57525993_A_G:57525993:40,41,0,0	0|1:136,4:0.027:140:57,2:79,2:0|1:57525993_A_G:57525993:69,67,2,2
+12	57525999	.	GAA	TTC	.	haplotype;panel_of_normals;weak_evidence	CONTQ=93;DP=219;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=98,63;MMQ=60,60;MPOS=16;NALOD=1.62;NLOD=12.34;PON;POPAF=5.60;ROQ=10;SEQQ=5;STRANDQ=38;TLOD=5.31	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:80,0:0.023:80:18,0:56,0:0|1:57525993_A_G:57525993:39,41,0,0	0|1:135,4:0.028:139:53,2:77,2:0|1:57525993_A_G:57525993:68,67,2,2
+12	57527948	.	TG	T	.	normal_artifact;panel_of_normals;slippage	CONTQ=93;DP=355;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=117,118;MMQ=60,60;MPOS=41;NALOD=0.279;NLOD=16.58;PON;POPAF=4.31;ROQ=93;RPA=8,7;RU=G;SEQQ=93;STR;STRANDQ=93;STRQ=1;TLOD=14.86	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:126,4:0.037:130:57,0:68,4:63,63,2,2	0/1:170,27:0.123:197:85,14:81,13:85,85,13,14
+14	24415729	.	TTGGTCTC	T	.	weak_evidence	CONTQ=93;DP=450;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=119,185;MMQ=60,60;MPOS=24;NALOD=2.05;NLOD=32.73;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.36	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:199,0:8.892e-03:199:111,0:84,0:100,99,0,0	0/1:230,2:0.016:232:102,2:111,0:110,120,1,1
+14	35116548	.	C	T	.	clustered_events;orientation	CONTQ=93;DP=177;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=114,118;MMQ=60,60;MPOS=38;NALOD=1.78;NLOD=17.46;POPAF=5.60;ROQ=1;SEQQ=49;STRANDQ=46;TLOD=9.48	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:105,0:0.016:105:53,0:50,0:58,47,0,0	0/1:65,4:0.075:69:31,0:34,4:36,29,2,2
+14	35116554	.	CA	C	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=204;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=114,92;MMQ=60,60;MPOS=9;NALOD=1.83;NLOD=19.87;POPAF=5.60;ROQ=93;RPA=5,4;RU=A;SEQQ=2;STR;STRANDQ=36;STRQ=93;TLOD=4.05	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:118,0:0.015:118:58,0:57,0:0|1:35116554_CA_C:35116554:66,52,0,0	0|1:84,2:0.042:86:40,0:41,2:0|1:35116554_CA_C:35116554:44,40,1,1
+14	35116557	.	A	G	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=206;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=114,92;MMQ=60,60;MPOS=7;NALOD=1.83;NLOD=19.87;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=29;TLOD=4.05	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:118,0:0.015:118:58,0:58,0:0|1:35116554_CA_C:35116554:66,52,0,0	0|1:84,2:0.041:86:42,0:42,1:0|1:35116554_CA_C:35116554:44,40,1,1
+14	64742015	.	GC	G	.	base_qual;haplotype;panel_of_normals;weak_evidence	CONTQ=93;DP=446;ECNT=2;GERMQ=93;MBQ=20,16;MFRL=116,93;MMQ=60,60;MPOS=15;NALOD=1.97;NLOD=27.39;PON;POPAF=5.60;ROQ=93;RPA=2,1;RU=C;SEQQ=2;STR;STRANDQ=29;STRQ=93;TLOD=4.04	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:170,0:0.011:170:87,0:77,0:0|1:64742015_GC_G:64742015:82,88,0,0	0|1:268,2:0.014:270:123,1:132,0:0|1:64742015_GC_G:64742015:132,136,1,1
+14	64742026	.	G	A	.	haplotype;orientation;weak_evidence	CONTQ=93;DP=415;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=119,93;MMQ=60,60;MPOS=5;NALOD=1.94;NLOD=25.89;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=23;TLOD=4.08	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:157,0:0.011:157:78,0:73,0:0|1:64742015_GC_G:64742015:74,83,0,0	0|1:256,2:0.014:258:113,2:135,0:0|1:64742015_GC_G:64742015:125,131,1,1
+14	95196593	.	C	T	.	orientation;weak_evidence	CONTQ=93;DP=316;ECNT=2;GERMQ=93;MBQ=20,25;MFRL=120,110;MMQ=60,60;MPOS=27;NALOD=1.92;NLOD=24.68;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=28;TLOD=3.46	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:152,0:0.012:152:91,0:59,0:81,71,0,0	0/1:158,4:0.044:162:69,2:87,1:85,73,3,1
+14	95196611	.	CT	C	.	slippage	CONTQ=93;DP=393;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=120,101;MMQ=60,60;MPOS=34;NALOD=1.58;NLOD=26.23;POPAF=5.60;ROQ=93;RPA=8,7;RU=T;SEQQ=93;STR;STRANDQ=93;STRQ=1;TLOD=15.04	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:179,2:0.017:181:107,0:71,2:94,85,1,1	0/1:170,24:0.119:194:75,8:92,16:91,79,12,12
+14	95202927	.	T	TG	.	normal_artifact;panel_of_normals	CONTQ=93;DP=315;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=118,85;MMQ=60,60;MPOS=14;NALOD=-2.456e+00;NLOD=15.46;PON;POPAF=5.60;ROQ=93;RPA=2,3;RU=G;SEQQ=34;STR;STRANDQ=34;STRQ=93;TLOD=8.30	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:135,2:0.027:137:54,2:79,0:67,68,1,1	0/1:150,4:0.047:154:69,2:80,2:74,76,3,1
+14	95229994	.	TC	T	.	PASS	CONTQ=93;DP=414;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,201;MMQ=60,60;MPOS=39;NALOD=2.08;NLOD=34.42;POPAF=5.60;ROQ=93;RPA=5,4;RU=C;SEQQ=4;STR;STRANDQ=67;STRQ=93;TLOD=4.54	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:221,0:8.364e-03:221:120,0:87,0:113,108,0,0	0/1:167,6:0.034:173:73,2:86,4:85,82,3,3
+14	99175998	.	TGAGC	T	.	weak_evidence	CONTQ=93;DP=499;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=101,128;MMQ=60,60;MPOS=57;NALOD=2.00;NLOD=29.16;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=38;TLOD=3.68	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:190,0:9.996e-03:190:101,0:80,0:94,96,0,0	0/1:287,2:0.013:289:133,2:144,0:144,143,1,1
+14	99231332	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=518;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=111,146;MMQ=60,60;MPOS=42;NALOD=-9.466e-01;NLOD=24.85;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=30;TLOD=3.52	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:186,2:0.020:188:111,2:73,0:92,94,1,1	0/1:316,4:0.018:320:170,0:141,4:155,161,2,2
+14	102983531	.	A	G	.	orientation;weak_evidence	CONTQ=93;DP=290;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=137,131;MMQ=60,60;MPOS=47;NALOD=1.61;NLOD=23.77;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=38;TLOD=3.02	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:152,0:0.012:152:73,0:76,0:77,75,0,0	0/1:130,4:0.041:134:48,3:74,0:67,63,2,2
+15	27871788	.	CTT	C,CT,CTTT	.	multiallelic;normal_artifact	CONTQ=93;DP=351;ECNT=1;GERMQ=93;MBQ=20,20,20,20;MFRL=113,110,105,102;MMQ=60,60,60,60;MPOS=22,29,22;NALOD=0.465,-1.676e+01,-3.587e+00;NLOD=18.81,-1.079e+01,10.18;POPAF=1.80,5.60,3.83;ROQ=93;RPA=11,9,10,12;RU=T;SEQQ=41;STR;STRANDQ=93;STRQ=93;TLOD=5.55,7.73,5.18	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:113,2,32,16:0.020,0.199,0.092:163:67,2,11,10:44,0,20,6:54,59,26,24	0/1/2/3:118,10,19,16:0.066,0.118,0.100:163:68,4,8,9:49,6,11,7:60,58,23,22
+15	44711582	.	ACT	A	.	slippage	CONTQ=93;DP=753;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=127,111;MMQ=60,60;MPOS=26;NALOD=2.01;NLOD=54.31;POPAF=5.60;ROQ=93;RPA=4,3;RU=CT;SEQQ=93;STR;STRANDQ=93;STRQ=1;TLOD=33.24	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:335,0:4.987e-03:335:174,0:146,0:164,171,0,0	0/1:252,24:0.088:276:129,14:116,10:127,125,12,12
+15	44713923	.	A	AGGCAGCTACTCCTCCTTGTCTG,AGGCAGTTACTCCTCCTTGTCTG	.	multiallelic;weak_evidence	CONTQ=93;DP=243;ECNT=1;GERMQ=93;MBQ=20,20,20;MFRL=111,64,140;MMQ=60,60,60;MPOS=24,18;NALOD=1.65,1.65;NLOD=25.74,25.74;POPAF=5.60,5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=6.29,3.09	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:151,0,0:0.011,0.011:151:73,0,0:77,0,0:77,74,0,0	0/1/2:76,3,2:0.065,0.043:81:30,1,2:46,2,0:38,38,3,2
+15	44715554	.	GA	G	.	PASS	CONTQ=93;DP=382;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=129,159;MMQ=60,60;MPOS=44;NALOD=0.892;NLOD=33.23;POPAF=5.60;ROQ=93;RPA=5,4;RU=A;SEQQ=28;STR;STRANDQ=93;STRQ=93;TLOD=6.89	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:214,1:0.016:215:99,1:112,0:107,107,0,1	0/1:140,10:0.083:150:69,3:71,7:71,69,5,5
+15	65386563	.	C	T	.	clustered_events;orientation;weak_evidence	CONTQ=93;DP=479;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=114,149;MMQ=60,60;MPOS=14;NALOD=2.03;NLOD=31.91;POPAF=3.46;ROQ=1;SEQQ=1;STRANDQ=25;TLOD=3.31	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:203,0:9.223e-03:203:113,0:87,0:103,100,0,0	0/1:262,3:0.021:265:132,3:125,0:132,130,2,1
+15	65386585	.	A	AGGCCTCCTGGCCTGCATGTGTGCT,AGGCCTGGGCCTCCTCTGCCTCCTGGCCTGCATGTGTGCT	.	clustered_events;multiallelic;weak_evidence	CONTQ=93;DP=514;ECNT=3;GERMQ=93;MBQ=20,20,20;MFRL=115,86,102;MMQ=60,60,60;MPOS=17,27;NALOD=1.45,1.49;NLOD=24.60,24.90;POPAF=5.60,5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=5.53,5.44	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:210,0,0:0.014,0.012:210:111,0,0:97,0,0:106,104,0,0	0/1/2:265,2,4:0.021,0.019:271:147,2,2:115,0,0:134,131,3,3
+15	65386622	.	G	A	.	clustered_events;orientation	CONTQ=93;DP=502;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=114,118;MMQ=60,60;MPOS=36;NALOD=2.03;NLOD=31.90;POPAF=5.60;ROQ=7;SEQQ=28;STRANDQ=31;TLOD=7.65	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:196,0:9.189e-03:196:121,0:74,0:96,100,0,0	0/1:289,4:0.019:293:168,2:121,2:144,145,2,2
+15	90918617	.	ACTTCCC	A	.	panel_of_normals	CONTQ=93;DP=784;ECNT=2;GERMQ=93;MBQ=20,29;MFRL=108,78;MMQ=60,60;MPOS=5;NALOD=2.20;NLOD=46.36;PON;POPAF=5.60;ROQ=93;SEQQ=93;STRANDQ=93;TLOD=32.91	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:298,0:6.347e-03:298:132,0:143,0:149,149,0,0	0/1:445,10:0.026:455:211,8:208,2:224,221,5,5
+15	90918629	.	A	G	.	orientation;weak_evidence	CONTQ=93;DP=746;ECNT=2;GERMQ=93;MBQ=20,24;MFRL=108,69;MMQ=60,60;MPOS=12;NALOD=2.19;NLOD=45.76;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=27;TLOD=3.45	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:292,0:6.458e-03:292:143,0:143,0:145,147,0,0	0/1:445,4:0.013:449:209,4:207,0:223,222,2,2
+16	28984905	.	TG	T	.	normal_artifact;slippage;weak_evidence	CONTQ=93;DP=364;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,109;MMQ=60,60;MPOS=28;NALOD=1.10;NLOD=20.80;POPAF=5.60;ROQ=93;RPA=8,7;RU=G;SEQQ=1;STR;STRANDQ=93;STRQ=1;TLOD=3.51	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:153,4:0.022:157:82,4:70,0:77,76,2,2	0/1:159,14:0.074:173:93,4:62,10:76,83,7,7
+16	54283663	.	G	GT	.	PASS	CONTQ=93;DP=288;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=131,135;MMQ=60,60;MPOS=32;NALOD=1.93;NLOD=23.52;POPAF=3.03;ROQ=93;RPA=7,8;RU=T;SEQQ=74;STR;STRANDQ=93;STRQ=93;TLOD=11.88	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:146,0:0.012:146:68,0:75,0:71,75,0,0	0/1:88,16:0.166:104:46,8:42,8:42,46,9,7
+16	54285164	.	GTCC	G	.	normal_artifact;slippage;weak_evidence	CONTQ=93;DP=561;ECNT=1;GERMQ=93;MBQ=20,32;MFRL=115,106;MMQ=60,60;MPOS=1;NALOD=-1.247e+00;NLOD=22.99;POPAF=5.60;ROQ=93;RPA=4,3;RU=TCC;SEQQ=1;STR;STRANDQ=63;STRQ=1;TLOD=4.14	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:173,2:0.020:175:53,0:110,2:87,86,1,1	0/1:279,4:0.019:283:114,0:146,4:136,143,2,2
+16	68919036	.	AT	A,ATT,ATTTT	.	multiallelic;normal_artifact;panel_of_normals;slippage	CONTQ=93;DP=533;ECNT=1;GERMQ=93;MBQ=20,20,20,20;MFRL=124,126,108,94;MMQ=60,60,60,60;MPOS=19,40,35;NALOD=-1.986e+01,-9.593e+00,0.477;NLOD=0.249,9.44,37.98;PON;POPAF=2.17,1.00,5.60;ROQ=93;RPA=11,10,12,14;RU=T;SEQQ=87;STR;STRANDQ=93;STRQ=1;TLOD=12.72,10.08,6.13	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:219,39,31,2:0.136,0.112,0.013:291:106,24,19,2:109,14,12,0:113,106,36,36	0/1/2/3:136,31,29,4:0.146,0.151,0.029:200:67,15,11,2:69,16,18,2:70,66,33,31
+16	85613412	.	A	ACCCGTC	.	weak_evidence	CONTQ=93;DP=386;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=115,70;MMQ=60,60;MPOS=16;NALOD=1.91;NLOD=23.60;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.87	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:148,0:0.012:148:58,0:86,0:75,73,0,0	0/1:212,2:0.017:214:94,0:113,2:108,104,1,1
+16	85613480	.	G	A	.	orientation;weak_evidence	CONTQ=93;DP=270;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=112,127;MMQ=60,60;MPOS=34;NALOD=1.80;NLOD=18.73;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=29;TLOD=3.77	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:108,0:0.015:108:38,0:68,0:45,63,0,0	0/1:153,3:0.030:156:60,1:88,2:59,94,1,2
+16	85648654	.	T	G	.	clustered_events;haplotype;normal_artifact;orientation	CONTQ=93;DP=285;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=101,98;MMQ=60,60;MPOS=17;NALOD=-5.766e+00;NLOD=8.17;POPAF=5.60;ROQ=1;SEQQ=79;STRANDQ=36;TLOD=12.80	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:107,2:0.034:109:60,0:46,2:0|1:85648654_T_G:85648654:52,55,1,1	0|1:165,4:0.034:169:65,0:96,4:0|1:85648654_T_G:85648654:82,83,2,2
+16	85648660	.	CT	AG	.	clustered_events;haplotype;normal_artifact;orientation	CONTQ=93;DP=268;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=102,98;MMQ=60,60;MPOS=11;NALOD=-5.800e+00;NLOD=7.56;POPAF=5.60;ROQ=1;SEQQ=79;STRANDQ=36;TLOD=12.85	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:103,2:0.035:105:57,0:44,2:0|1:85648654_T_G:85648654:50,53,1,1	0|1:159,4:0.036:163:64,0:92,4:0|1:85648654_T_G:85648654:79,80,2,2
+16	85648666	.	GCC	G	.	clustered_events;haplotype;normal_artifact	CONTQ=93;DP=258;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=103,98;MMQ=60,60;MPOS=5;NALOD=-5.543e+00;NLOD=6.95;POPAF=5.60;ROQ=93;SEQQ=38;STRANDQ=50;TLOD=12.61	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:99,2:0.036:101:55,0:41,2:0|1:85648654_T_G:85648654:48,51,1,1	0|1:153,4:0.037:157:63,0:84,4:0|1:85648654_T_G:85648654:76,77,2,2
+16	85648670	.	C	CGATGAT	.	clustered_events;haplotype;normal_artifact	CONTQ=93;DP=245;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=103,98;MMQ=60,60;MPOS=3;NALOD=-5.576e+00;NLOD=6.35;POPAF=5.60;ROQ=93;SEQQ=39;STRANDQ=93;TLOD=12.68	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:96,2:0.038:98:54,0:42,2:0|1:85648654_T_G:85648654:47,49,1,1	0|1:143,4:0.039:147:59,0:81,4:0|1:85648654_T_G:85648654:70,73,2,2
+16	85648673	.	C	G	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=235;ECNT=5;GERMQ=93;MBQ=20,20;MFRL=104,73;MMQ=60,60;MPOS=1;NALOD=1.69;NLOD=14.45;POPAF=5.60;ROQ=7;SEQQ=5;STRANDQ=26;TLOD=5.27	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:92,0:0.020:92:49,0:41,0:0|1:85648654_T_G:85648654:45,47,0,0	0|1:141,2:0.027:143:58,0:81,2:0|1:85648654_T_G:85648654:69,72,1,1
+16	85661210	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=555;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=107,89;MMQ=60,60;MPOS=26;NALOD=-1.004e+00;NLOD=22.17;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=29;TLOD=3.32	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:165,2:0.022:167:72,0:92,2:84,81,1,1	0/1:352,4:0.016:356:174,4:176,0:179,173,2,2
+16	87690098	.	C	CACGTGAACACGGGGGGTGACTCCGTCCG,CACGTGAACACGGGGGGTGACTCCGTCCGCCG	.	base_qual;multiallelic;weak_evidence	CONTQ=93;DP=292;ECNT=1;GERMQ=93;MBQ=20,0,0;MFRL=111,98,76;MMQ=60,60,60;MPOS=50,50;NALOD=1.07,1.07;NLOD=19.03,19.03;POPAF=5.60,5.60;ROQ=93;SEQQ=5;STRANDQ=93;TLOD=7.19,5.22	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:102,0,0:0.015,0.015:102:70,0,0:31,0,0:43,59,0,0	0/1/2:169,4,2:0.031,0.020:175:109,0,0:58,0,0:70,99,3,3
+17	1125239	.	T	A	.	base_qual;clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=454;ECNT=4;GERMQ=93;MBQ=20,0;MFRL=109,78;MMQ=60,60;MPOS=50;NALOD=2.00;NLOD=29.50;POPAF=5.60;ROQ=2;SEQQ=2;STRANDQ=23;TLOD=4.72	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:193,0:9.958e-03:193:101,0:82,0:0|1:1125239_T_A:1125239:97,96,0,0	0|1:259,2:0.014:261:133,0:115,0:0|1:1125239_T_A:1125239:130,129,1,1
+17	1125241	.	C	CCA	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=455;ECNT=4;GERMQ=93;MBQ=20,33;MFRL=108,78;MMQ=60,60;MPOS=1;NALOD=1.99;NLOD=28.90;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=29;TLOD=4.71	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:189,0:0.010:189:102,0:84,0:0|1:1125239_T_A:1125239:95,94,0,0	0|1:264,2:0.014:266:139,2:116,0:0|1:1125239_T_A:1125239:132,132,1,1
+17	1125247	.	CT	GG	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=450;ECNT=4;GERMQ=93;MBQ=20,26;MFRL=108,78;MMQ=60,60;MPOS=9;NALOD=1.98;NLOD=28.60;POPAF=5.60;ROQ=1;SEQQ=2;STRANDQ=23;TLOD=4.72	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:187,0:0.010:187:101,0:79,0:0|1:1125239_T_A:1125239:94,93,0,0	0|1:261,2:0.014:263:142,2:109,0:0|1:1125239_T_A:1125239:130,131,1,1
+17	1125248	.	T	C	.	clustered_events;orientation	CONTQ=93;DP=446;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=109,121;MMQ=60,60;MPOS=24;NALOD=1.67;NLOD=27.08;POPAF=5.60;ROQ=1;SEQQ=23;STRANDQ=32;TLOD=7.17	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:177,0:0.011:177:98,0:78,0:89,88,0,0	0/1:251,4:0.022:255:143,0:107,4:125,126,2,2
+17	18778647	.	G	A	.	orientation;weak_evidence	CONTQ=93;DP=226;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=119,120;MMQ=49,49;MPOS=52;NALOD=1.88;NLOD=22.27;POPAF=5.60;ROQ=1;SEQQ=7;STRANDQ=44;TLOD=5.30	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:141,0:0.013:141:60,0:80,0:68,73,0,0	0/1:75,4:0.070:79:34,4:41,0:37,38,2,2
+17	42673714	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=631;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=110,60;MMQ=60,60;MPOS=23;NALOD=-4.971e+00;NLOD=21.96;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=28;TLOD=3.11	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:196,2:0.019:198:112,2:82,0:97,99,1,1	0/1:420,4:0.013:424:201,0:213,4:211,209,2,2
+17	58370942	.	GC	G	.	PASS	CONTQ=93;DP=416;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=119,129;MMQ=60,60;MPOS=32;NALOD=1.96;NLOD=26.66;POPAF=5.60;ROQ=93;RPA=3,2;RU=C;SEQQ=93;STR;STRANDQ=93;STRQ=93;TLOD=16.57	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:173,2:0.011:175:75,2:95,0:84,89,1,1	0/1:198,24:0.110:222:107,15:85,9:97,101,12,12
+17	65536466	.	G	GC	.	PASS	CONTQ=93;DP=542;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=114,110;MMQ=60,60;MPOS=33;NALOD=1.78;NLOD=34.84;POPAF=5.60;ROQ=93;RPA=7,8;RU=C;SEQQ=93;STR;STRANDQ=93;STRQ=93;TLOD=25.84	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:221,0:8.386e-03:221:111,0:110,0:113,108,0,0	0/1:254,43:0.144:297:127,18:124,23:131,123,22,21
+17	79090741	.	C	T	.	clustered_events;normal_artifact;orientation;weak_evidence	CONTQ=93;DP=789;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=122,121;MMQ=60,60;MPOS=21;NALOD=-1.567e+00;NLOD=57.29;POPAF=5.60;ROQ=4;SEQQ=1;STRANDQ=28;TLOD=3.11	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:376,3:0.013:379:196,3:178,0:210,166,2,1	0/1:383,4:0.014:387:178,2:202,2:210,173,2,2
+17	79090745	.	GTTGGATGCCTCTTGGTTTGGTTGGTTTTTTTTTTGTTGC	G	.	clustered_events;weak_evidence	CONTQ=93;DP=1165;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=122,183;MMQ=60,60;MPOS=47;NALOD=2.48;NLOD=90.66;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.04	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:572,0:3.280e-03:572:208,0:193,0:294,278,0,0	0/1:579,2:6.601e-03:581:183,2:213,0:295,284,1,1
+17	79090760	.	GTTTGGTTGGT	G	.	clustered_events;weak_evidence	CONTQ=93;DP=1074;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=123,89;MMQ=60,60;MPOS=38;NALOD=2.16;NLOD=83.24;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.40	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:517,0:3.557e-03:517:223,0:232,0:268,249,0,0	0/1:516,2:7.179e-03:518:212,0:241,2:265,251,1,1
+17	79090769	.	GT	G,GTT	.	clustered_events;multiallelic;normal_artifact;panel_of_normals;slippage	CONTQ=93;DP=1037;ECNT=4;GERMQ=93;MBQ=20,20,20;MFRL=126,124,123;MMQ=60,60,60;MPOS=36,25;NALOD=-8.030e+00,-4.226e+01;NLOD=46.54,-2.830e+01;PON;POPAF=2.92,0.607;ROQ=93;RPA=10,9,11;RU=T;SEQQ=93;STR;STRANDQ=93;STRQ=1;TLOD=8.31,22.21	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:367,27,97:0.053,0.190:491:177,15,47:182,9,48:191,176,64,60	0/1/2:369,33,71:0.062,0.141:473:171,16,40:194,15,29:189,180,55,49
+18	13099463	.	AT	A	.	slippage	CONTQ=93;DP=265;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=123,96;MMQ=60,60;MPOS=23;NALOD=1.63;NLOD=24.51;POPAF=5.60;ROQ=93;RPA=8,7;RU=T;SEQQ=17;STR;STRANDQ=93;STRQ=1;TLOD=5.41	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:155,0:0.012:155:83,0:72,0:80,75,0,0	0/1:86,11:0.128:97:49,7:37,4:42,44,5,6
+19	799399	.	C	T	.	orientation;weak_evidence	CONTQ=93;DP=650;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=109,107;MMQ=60,60;MPOS=35;NALOD=2.19;NLOD=46.66;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=29;TLOD=3.20	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:302,0:6.352e-03:302:145,0:152,0:151,151,0,0	0/1:334,4:0.017:338:154,0:180,4:168,166,2,2
+19	806420	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=408;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=107,135;MMQ=60,60;MPOS=27;NALOD=-1.208e+00;NLOD=16.45;POPAF=5.60;ROQ=1;SEQQ=2;STRANDQ=23;TLOD=4.75	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:134,2:0.027:136:72,2:59,0:68,66,1,1	0/1:261,2:0.015:263:148,0:109,2:130,131,1,1
+19	806458	.	TCGG	T	.	slippage;weak_evidence	CONTQ=93;DP=269;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=114,105;MMQ=60,60;MPOS=30;NALOD=1.68;NLOD=12.89;POPAF=5.60;ROQ=93;RPA=4,3;RU=CGG;SEQQ=9;STR;STRANDQ=71;STRQ=1;TLOD=9.60	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:82,0:0.021:82:42,0:38,0:40,42,0,0	0/1:140,4:0.038:144:72,2:63,2:67,73,2,2
+19	812837	.	GC	G	.	clustered_events;haplotype;panel_of_normals	CONTQ=93;DP=192;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=96,87;MMQ=60,60;MPOS=19;NALOD=1.46;NLOD=8.10;PON;POPAF=5.60;ROQ=93;RPA=2,1;RU=C;SEQQ=93;STR;STRANDQ=76;STRQ=93;TLOD=18.44	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:53,0:0.034:53:21,0:30,0:0|1:812837_GC_G:812837:26,27,0,0	0|1:112,7:0.079:119:59,0:48,6:0|1:812837_GC_G:812837:55,57,4,3
+19	812844	.	AAG	CTT	.	clustered_events;haplotype;orientation	CONTQ=93;DP=172;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=95,69;MMQ=60,60;MPOS=11;NALOD=1.48;NLOD=8.73;POPAF=5.60;ROQ=1;SEQQ=93;STRANDQ=43;TLOD=16.21	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:57,0:0.032:57:19,0:27,0:0|1:812837_GC_G:812837:28,29,0,0	0|1:110,5:0.066:115:55,0:49,5:0|1:812837_GC_G:812837:54,56,3,2
+19	812851	.	GC	G	.	clustered_events;haplotype	CONTQ=93;DP=160;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=96,69;MMQ=60,60;MPOS=4;NALOD=1.43;NLOD=7.83;POPAF=5.60;ROQ=93;SEQQ=93;STRANDQ=57;TLOD=16.30	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:51,0:0.036:51:17,0:28,0:0|1:812837_GC_G:812837:25,26,0,0	0|1:104,5:0.069:109:44,0:49,5:0|1:812837_GC_G:812837:51,53,3,2
+19	812855	.	CA	GG	.	clustered_events;haplotype;orientation	CONTQ=93;DP=153;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=95,69;MMQ=60,60;MPOS=1;NALOD=1.40;NLOD=7.21;POPAF=5.60;ROQ=1;SEQQ=93;STRANDQ=44;TLOD=16.36	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:45,0:0.038:45:15,0:25,0:0|1:812837_GC_G:812837:21,24,0,0	0|1:99,5:0.071:104:42,0:50,4:0|1:812837_GC_G:812837:48,51,3,2
+19	813894	.	G	A	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=182;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=106,106;MMQ=60,60;MPOS=27;NALOD=-1.899e+00;NLOD=4.71;POPAF=5.60;ROQ=8;SEQQ=2;STRANDQ=39;TLOD=4.73	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:59,2:0.059:61:32,0:27,2:29,30,1,1	0/1:117,4:0.045:121:60,2:56,2:60,57,2,2
+19	40379650	.	G	A	.	clustered_events;orientation;weak_evidence	CONTQ=93;DP=181;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=127,72;MMQ=60,60;MPOS=21;NALOD=1.64;NLOD=12.94;POPAF=4.31;ROQ=1;SEQQ=7;STRANDQ=28;TLOD=5.50	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:81,0:0.022:81:47,0:34,0:40,41,0,0	0/1:93,2:0.034:95:43,2:48,0:46,47,1,1
+19	40379654	.	C	CG	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=183;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=128,72;MMQ=60,60;MPOS=17;NALOD=1.67;NLOD=13.85;POPAF=5.60;ROQ=93;RPA=2,3;RU=G;SEQQ=1;STR;STRANDQ=35;STRQ=93;TLOD=4.38	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:86,0:0.021:86:51,0:31,0:0|1:40379654_C_CG:40379654:42,44,0,0	0|1:95,2:0.034:97:47,2:43,0:0|1:40379654_C_CG:40379654:47,48,1,1
+19	40379657	.	C	G	.	clustered_events;haplotype;orientation	CONTQ=93;DP=180;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=129,72;MMQ=60,60;MPOS=13;NALOD=1.20;NLOD=13.55;POPAF=5.60;ROQ=1;SEQQ=11;STRANDQ=28;TLOD=5.91	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:85,0:0.021:85:53,0:31,0:0|1:40379654_C_CG:40379654:42,43,0,0	0|1:93,2:0.035:95:49,2:43,0:0|1:40379654_C_CG:40379654:46,47,1,1
+19	41443218	.	C	T	.	orientation;weak_evidence	CONTQ=93;DP=481;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=114,127;MMQ=60,60;MPOS=41;NALOD=1.99;NLOD=28.90;POPAF=5.60;ROQ=5;SEQQ=1;STRANDQ=31;TLOD=3.60	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:183,0:0.010:183:86,0:97,0:91,92,0,0	0/1:286,4:0.019:290:142,2:143,2:146,140,2,2
+19	41443227	.	C	T	.	normal_artifact;orientation;panel_of_normals;weak_evidence	CONTQ=93;DP=472;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=116,143;MMQ=60,60;MPOS=50;NALOD=-8.434e-01;NLOD=24.02;PON;POPAF=5.60;ROQ=5;SEQQ=1;STRANDQ=31;TLOD=3.46	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:181,2:0.020:183:87,0:92,2:89,92,1,1	0/1:271,4:0.021:275:139,2:124,2:137,134,2,2
+19	43592264	.	G	GCTGGCAGCGCGCGCTCATTTCCCAGGCCCGGTGA	.	normal_artifact;weak_evidence	CONTQ=93;DP=690;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=112,76;MMQ=60,60;MPOS=24;NALOD=-4.875e+00;NLOD=25.19;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.25	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:219,2:0.017:221:105,0:109,2:109,110,1,1	0/1:463,6:8.470e-03:469:228,4:228,0:230,233,3,3
+19	43593378	.	AAGAAGGGACAGGGTCAAAGGT	A	.	weak_evidence	CONTQ=93;DP=387;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=116,195;MMQ=60,60;MPOS=45;NALOD=1.96;NLOD=26.28;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.96	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:168,0:0.011:168:98,0:63,0:82,86,0,0	0/1:190,2:0.019:192:85,2:104,0:91,99,1,1
+19	48739601	.	G	A	.	PASS	CONTQ=93;DP=640;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=113,113;MMQ=60,60;MPOS=27;NALOD=2.06;NLOD=33.72;POPAF=5.60;ROQ=3;SEQQ=23;STRANDQ=28;TLOD=7.22	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:215,0:8.612e-03:215:127,0:85,0:109,106,0,0	0/1:394,4:0.014:398:195,2:197,2:197,197,2,2
+2	24834809	.	C	CGCTCAACCAGCT	.	weak_evidence	CONTQ=93;DP=639;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=121,87;MMQ=60,60;MPOS=36;NALOD=2.12;NLOD=36.31;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.46	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:230,0:7.811e-03:230:123,0:105,0:113,117,0,0	0/1:335,2:0.011:337:160,0:170,2:166,169,1,1
+2	24834810	.	G	A	.	normal_artifact;orientation	CONTQ=93;DP=637;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=119,108;MMQ=60,60;MPOS=28;NALOD=-6.862e-01;NLOD=35.39;POPAF=5.60;ROQ=1;SEQQ=16;STRANDQ=37;TLOD=6.49	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:259,2:0.015:261:136,2:121,0:127,132,1,1	0/1:360,6:0.021:366:178,0:180,6:178,182,3,3
+2	28404073	.	A	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=463;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=118,171;MMQ=60,60;MPOS=50;NALOD=-6.334e-01;NLOD=33.07;POPAF=5.60;ROQ=1;SEQQ=3;STRANDQ=24;TLOD=4.87	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:229,2:0.016:231:119,0:106,2:116,113,1,1	0/1:221,2:0.017:223:92,0:127,2:112,109,1,1
+2	32465041	.	ATT	A,AT	.	multiallelic;normal_artifact;panel_of_normals	CONTQ=93;DP=287;ECNT=1;GERMQ=67;MBQ=20,20,20;MFRL=113,122,105;MMQ=60,60,60;MPOS=35,23;NALOD=-4.326e-01,-9.292e+00;NLOD=16.12,-2.612e+00;PON;POPAF=2.03,5.60;ROQ=93;RPA=12,10,11;RU=T;SEQQ=48;STR;STRANDQ=93;STRQ=93;TLOD=3.65,9.18	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:139,4,28:0.031,0.153:171:75,2,17:63,2,11:69,70,15,17	0/1/2:77,8,20:0.087,0.198:105:40,6,13:33,2,6:39,38,15,13
+2	74003185	.	TGC	T	.	normal_artifact;weak_evidence	CONTQ=93;DP=768;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,123;MMQ=60,60;MPOS=31;NALOD=-3.893e-01;NLOD=28.20;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=3.38	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:245,12:0.030:257:126,2:98,0:123,122,3,9	0/1:250,12:0.043:262:127,6:99,0:128,122,5,7
+2	74530336	.	G	A	.	clustered_events;orientation;weak_evidence	CONTQ=93;DP=709;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=104,59;MMQ=60,60;MPOS=23;NALOD=1.81;NLOD=37.32;POPAF=5.60;ROQ=3;SEQQ=7;STRANDQ=22;TLOD=5.52	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:220,0:7.754e-03:220:125,0:88,0:110,110,0,0	0/1:461,3:0.012:464:241,1:204,1:235,226,1,2
+2	74530339	.	G	GCCCCCCCA	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=686;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=104,59;MMQ=60,60;MPOS=20;NALOD=1.80;NLOD=37.07;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.51	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:218,0:7.965e-03:218:121,0:85,0:0|1:74530339_G_GCCCCCCCA:74530339:109,109,0,0	0|1:460,2:8.000e-03:462:244,0:201,2:0|1:74530339_G_GCCCCCCCA:74530339:233,227,1,1
+2	74530340	.	G	GCGCCCA	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=671;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=103,59;MMQ=60,60;MPOS=11;NALOD=1.79;NLOD=36.77;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.52	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:216,0:8.029e-03:216:117,0:86,0:0|1:74530339_G_GCCCCCCCA:74530339:108,108,0,0	0|1:453,2:8.097e-03:455:235,0:199,2:0|1:74530339_G_GCCCCCCCA:74530339:229,224,1,1
+2	74556579	.	G	A	.	PASS	CONTQ=93;DP=311;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=114,122;MMQ=60,60;MPOS=40;NALOD=1.81;NLOD=18.96;POPAF=5.60;ROQ=16;SEQQ=93;STRANDQ=93;TLOD=34.92	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:121,0:0.015:121:61,0:58,0:60,61,0,0	0/1:163,20:0.122:183:75,15:86,5:80,83,10,10
+2	134345118	.	G	A	.	orientation;weak_evidence	CONTQ=93;DP=328;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=116,105;MMQ=60,60;MPOS=33;NALOD=2.03;NLOD=31.90;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=39;TLOD=4.40	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:200,0:9.260e-03:200:108,0:92,0:100,100,0,0	0/1:124,4:0.043:128:69,4:55,0:64,60,2,2
+2	151411199	.	TTGAGAGTA	T	.	normal_artifact;weak_evidence	CONTQ=93;DP=254;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=116,124;MMQ=60,60;MPOS=56;NALOD=1.88;NLOD=22.57;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=5.47	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:139,1:0.013:140:72,0:55,0:73,66,0,1	0/1:108,2:0.033:110:55,0:34,2:57,51,1,1
+2	151468079	.	G	A	.	orientation	CONTQ=93;DP=138;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=123,116;MMQ=60,60;MPOS=35;NALOD=1.73;NLOD=15.65;POPAF=5.60;ROQ=1;SEQQ=16;STRANDQ=53;TLOD=5.96	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:88,0:0.018:88:50,0:37,0:39,49,0,0	0/1:40,4:0.119:44:16,0:24,4:19,21,2,2
+2	164508766	.	C	T	.	normal_artifact;orientation;panel_of_normals;weak_evidence	CONTQ=93;DP=247;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=118,120;MMQ=60,60;MPOS=30;NALOD=-1.150e+00;NLOD=17.91;PON;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=28;TLOD=3.76	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:139,2:0.026:141:59,2:78,0:71,68,1,1	0/1:95,2:0.037:97:43,2:51,0:50,45,1,1
+2	168824753	.	CT	C	.	PASS	CONTQ=93;DP=388;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=120,139;MMQ=60,60;MPOS=36;NALOD=2.09;NLOD=34.32;POPAF=4.13;ROQ=93;RPA=7,6;RU=T;SEQQ=21;STR;STRANDQ=93;STRQ=93;TLOD=5.79	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:215,0:8.272e-03:215:108,0:106,0:107,108,0,0	0/1:110,14:0.108:124:50,5:59,8:51,59,7,7
+2	211630611	.	GA	G	.	normal_artifact;panel_of_normals	CONTQ=93;DP=374;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=121,109;MMQ=60,60;MPOS=31;NALOD=-4.354e+00;NLOD=17.44;PON;POPAF=5.60;ROQ=93;RPA=11,10;RU=A;SEQQ=93;STR;STRANDQ=93;STRQ=30;TLOD=24.76	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:190,11:0.064:201:96,2:84,8:95,95,5,6	0/1:112,43:0.282:155:55,21:49,21:55,57,23,20
+2	211630613	.	A	G	.	PASS	CONTQ=93;DP=372;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=120,108;MMQ=60,60;MPOS=25;NALOD=1.76;NLOD=33.64;POPAF=5.60;ROQ=62;SEQQ=52;STRANDQ=93;TLOD=9.55	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:207,0:8.747e-03:207:110,0:97,0:104,103,0,0	0/1:135,22:0.144:157:75,9:58,13:67,68,12,10
+2	211665500	.	AAAG	A	.	weak_evidence	CONTQ=93;DP=78;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=133,152;MMQ=60,60;MPOS=25;NALOD=1.38;NLOD=6.92;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=53;TLOD=3.88	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:45,0:0.040:45:17,0:27,0:22,23,0,0	0/1:31,2:0.100:33:14,2:17,0:16,15,1,1
+2	219535344	.	G	T	.	normal_artifact;panel_of_normals	CONTQ=93;DP=474;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=117,111;MMQ=60,60;MPOS=30;NALOD=-9.036e+00;NLOD=22.11;PON;POPAF=4.13;ROQ=16;SEQQ=81;STRANDQ=78;TLOD=12.93	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:237,8:0.042:245:116,4:106,4:119,118,5,3	0/1:199,13:0.062:212:114,3:74,10:102,97,6,7
+20	13580985	.	TAAAA	T,TAAA,TAAAAA	.	multiallelic;normal_artifact;panel_of_normals	CONTQ=93;DP=252;ECNT=1;GERMQ=93;MBQ=20,20,20,20;MFRL=135,130,126,124;MMQ=60,60,60,60;MPOS=17,29,34;NALOD=-5.331e-02,-2.265e+01,-9.687e+00;NLOD=19.72,-2.225e+01,-1.011e+01;PON;POPAF=1.43,0.481,2.97;ROQ=93;RPA=16,12,15,17;RU=A;SEQQ=71;STR;STRANDQ=93;STRQ=93;TLOD=11.64,9.96,7.56	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:55,2,44,39:0.023,0.326,0.264:140:19,0,26,16:33,2,15,15:27,28,40,45	0/1/2/3:23,10,26,23:0.131,0.298,0.296:82:11,8,15,12:11,1,6,7:11,12,27,32
+20	32358857	.	T	C	.	normal_artifact;orientation;panel_of_normals;weak_evidence	CONTQ=93;DP=233;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=95,75;MMQ=60,60;MPOS=14;NALOD=-5.750e+00;NLOD=3.33;PON;POPAF=5.60;ROQ=1;SEQQ=5;STRANDQ=29;TLOD=5.26	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:76,2:0.046:78:39,2:33,0:39,37,1,1	0/1:133,3:0.027:136:64,2:64,0:67,66,1,2
+21	41871517	.	C	T	.	clustered_events;normal_artifact;orientation;weak_evidence	CONTQ=93;DP=614;ECNT=6;GERMQ=93;MBQ=20,20;MFRL=114,112;MMQ=60,60;MPOS=55;NALOD=-6.225e-01;NLOD=37.21;POPAF=4.31;ROQ=1;SEQQ=1;STRANDQ=30;TLOD=3.23	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:267,2:0.014:269:136,2:126,0:136,131,1,1	0/1:329,4:0.017:333:152,1:175,2:167,162,2,2
+21	41871519	.	C	T	.	clustered_events	CONTQ=93;DP=634;ECNT=6;GERMQ=93;MBQ=20,20;MFRL=114,100;MMQ=60,60;MPOS=29;NALOD=2.17;NLOD=43.04;POPAF=5.60;ROQ=54;SEQQ=93;STRANDQ=93;TLOD=38.88	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:274,0:6.797e-03:274:143,0:129,0:140,134,0,0	0/1:316,24:0.073:340:150,10:164,13:160,156,12,12
+21	41871526	.	G	A	.	clustered_events;orientation;weak_evidence	CONTQ=93;DP=682;ECNT=6;GERMQ=93;MBQ=20,20;MFRL=112,127;MMQ=60,60;MPOS=34;NALOD=2.21;NLOD=47.68;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=29;TLOD=3.16	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:307,0:6.189e-03:307:158,0:146,0:155,152,0,0	0/1:362,4:0.016:366:170,2:192,1:182,180,2,2
+21	41871536	.	G	GATT	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=739;ECNT=6;GERMQ=93;MBQ=20,20;MFRL=113,83;MMQ=60,60;MPOS=21;NALOD=2.25;NLOD=52.73;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=37;TLOD=4.37	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:337,0:5.632e-03:337:169,0:160,0:0|1:41871536_G_GATT:41871536:170,167,0,0	0|1:391,2:9.642e-03:393:177,2:196,0:0|1:41871536_G_GATT:41871536:196,195,1,1
+21	41871538	.	C	CG	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=748;ECNT=6;GERMQ=93;MBQ=20,20;MFRL=113,83;MMQ=60,60;MPOS=16;NALOD=2.26;NLOD=54.23;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=27;TLOD=4.37	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:346,0:5.478e-03:346:173,0:163,0:0|1:41871536_G_GATT:41871536:174,172,0,0	0|1:396,2:9.581e-03:398:181,2:208,0:0|1:41871536_G_GATT:41871536:198,198,1,1
+21	41871540	.	C	CGCAGCCCTGCG	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=759;ECNT=6;GERMQ=93;MBQ=20,20;MFRL=113,83;MMQ=60,60;MPOS=13;NALOD=2.27;NLOD=54.41;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.36	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:346,0:5.411e-03:346:171,0:167,0:0|1:41871536_G_GATT:41871536:174,172,0,0	0|1:396,2:9.554e-03:398:182,2:208,0:0|1:41871536_G_GATT:41871536:198,198,1,1
+22	45199862	.	TG	T	.	PASS	CONTQ=93;DP=468;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,109;MMQ=60,60;MPOS=42;NALOD=1.34;NLOD=27.60;POPAF=5.60;ROQ=93;RPA=6,5;RU=G;SEQQ=7;STR;STRANDQ=78;STRQ=93;TLOD=5.00	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:198,3:0.019:201:102,0:84,3:100,98,2,1	0/1:227,8:0.031:235:98,4:115,4:112,115,4,4
+22	45211941	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=485;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,103;MMQ=60,60;MPOS=14;NALOD=-7.612e-01;NLOD=30.85;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=32;TLOD=3.82	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:225,2:0.016:227:82,2:136,0:114,111,1,1	0/1:237,4:0.023:241:108,4:122,0:124,113,2,2
+3	46446358	.	G	GT	.	normal_artifact;slippage;weak_evidence	CONTQ=93;DP=211;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=120,98;MMQ=60,60;MPOS=32;NALOD=0.647;NLOD=13.61;POPAF=2.95;ROQ=93;RPA=8,9;RU=T;SEQQ=3;STR;STRANDQ=93;STRQ=1;TLOD=4.24	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:105,4:0.043:109:48,1:55,2:55,50,2,2	0/1:79,12:0.138:91:50,2:27,9:40,39,6,6
+3	47850073	.	C	T	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=257;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=107,100;MMQ=60,60;MPOS=21;NALOD=-1.587e+00;NLOD=9.20;POPAF=5.60;ROQ=8;SEQQ=1;STRANDQ=36;TLOD=4.33	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:87,2:0.041:89:43,2:43,0:43,44,1,1	0/1:163,4:0.033:167:85,2:75,2:80,83,2,2
+3	195868137	.	T	C	.	normal_artifact;panel_of_normals;weak_evidence	CONTQ=93;DP=499;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=111,107;MMQ=60,60;MPOS=24;NALOD=-9.324e+00;NLOD=6.03;PON;POPAF=5.60;ROQ=16;SEQQ=1;STRANDQ=30;TLOD=3.42	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:148,7:0.070:155:78,2:67,5:74,74,3,4	0/1:327,4:0.017:331:155,2:164,2:161,166,2,2
+3	195868138	.	C	T	.	normal_artifact;orientation;panel_of_normals;weak_evidence	CONTQ=93;DP=497;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=111,115;MMQ=60,60;MPOS=27;NALOD=-4.353e+00;NLOD=14.88;PON;POPAF=3.38;ROQ=3;SEQQ=1;STRANDQ=30;TLOD=3.38	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:151,4:0.036:155:77,4:74,0:76,75,2,2	0/1:328,4:0.017:332:158,2:170,2:162,166,2,2
+3	195886937	.	G	C	.	haplotype;normal_artifact;orientation;panel_of_normals	CONTQ=93;DP=468;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=109,137;MMQ=60,60;MPOS=15;NALOD=-4.463e-01;NLOD=27.41;PON;POPAF=5.60;ROQ=2;SEQQ=53;STRANDQ=31;TLOD=10.16	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:196,2:0.018:198:93,0:94,2:0|1:195886937_G_C:195886937:101,95,1,1	0|1:266,4:0.028:270:116,1:139,3:0|1:195886937_G_C:195886937:135,131,2,2
+3	195886939	.	T	TCGAAC	.	haplotype;normal_artifact	CONTQ=93;DP=474;ECNT=2;GERMQ=93;MBQ=20,23;MFRL=110,137;MMQ=60,60;MPOS=13;NALOD=-4.501e-01;NLOD=26.82;POPAF=5.60;ROQ=93;SEQQ=14;STRANDQ=93;TLOD=10.18	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:192,2:0.019:194:92,0:88,2:0|1:195886937_G_C:195886937:99,93,1,1	0|1:261,4:0.028:265:112,1:137,3:0|1:195886937_G_C:195886937:132,129,2,2
+4	1978860	.	G	A	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=595;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,111;MMQ=60,60;MPOS=32;NALOD=0.851;NLOD=35.47;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=30;TLOD=3.33	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:245,1:0.015:246:106,0:129,1:119,126,0,1	0/1:327,4:0.017:331:182,4:141,0:159,168,2,2
+4	26735441	.	CTT	C,CT,CTTT	.	germline;multiallelic;normal_artifact;panel_of_normals	CONTQ=93;DP=289;ECNT=1;GERMQ=1;MBQ=20,20,20,20;MFRL=133,80,103,114;MMQ=60,60,60,60;MPOS=20,14,35;NALOD=1.23,-3.341e+00,-9.385e+01;NLOD=26.79,18.53,-1.146e+02;PON;POPAF=2.93,5.60,2.07;ROQ=93;RPA=11,9,10,12;RU=T;SEQQ=93;STR;STRANDQ=93;STRQ=93;TLOD=5.19,5.28,40.76	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:23,0,8,137:0.010,0.051,0.807:168:8,0,4,66:15,0,4,71:12,11,72,73	0/1/2/3:14,8,9,64:0.092,0.112,0.643:95:7,4,6,35:6,3,3,29:9,5,40,41
+4	54732045	.	ATTTTTTTTTTT	A	.	normal_artifact;panel_of_normals;weak_evidence	CONTQ=93;DP=141;ECNT=1;GERMQ=70;MBQ=20,20;MFRL=155,89;MMQ=60,60;MPOS=33;NALOD=0.653;NLOD=4.71;PON;POPAF=5.60;ROQ=93;RPA=25,14;RU=T;SEQQ=5;STR;STRANDQ=93;STRQ=93;TLOD=6.99	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:59,3:0.070:62:24,1:10,2:31,28,1,2	0/1:37,8:0.223:45:17,4:9,4:18,19,3,5
+4	106236542	.	TAAA	T,TA,TAA	.	germline;multiallelic;normal_artifact;panel_of_normals	CONTQ=93;DP=302;ECNT=1;GERMQ=1;MBQ=20,20,20,20;MFRL=110,149,105,118;MMQ=60,60,60,60;MPOS=26,26,35;NALOD=1.36,-2.455e+00,-5.780e+01;NLOD=23.58,1.52,-6.358e+01;PON;POPAF=0.854,1.19,5.60;ROQ=93;RPA=12,9,10,11;RU=A;SEQQ=93;STR;STRANDQ=93;STRQ=93;TLOD=6.78,4.16,20.88	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:105,0,10,80:8.954e-03,0.052,0.418:195:49,0,4,38:47,0,6,36:53,52,46,44	0/1/2/3:39,8,10,34:0.117,0.116,0.356:91:13,8,4,11:21,0,6,20:19,20,25,27
+4	177440465	.	ATT	A	.	normal_artifact;panel_of_normals;weak_evidence	CONTQ=93;DP=339;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=123,134;MMQ=60,60;MPOS=37;NALOD=-2.073e+00;NLOD=21.09;PON;POPAF=3.53;ROQ=93;RPA=9,7;RU=T;SEQQ=1;STR;STRANDQ=54;STRQ=93;TLOD=4.42	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:179,4:0.030:183:83,2:92,2:90,89,2,2	0/1:107,4:0.063:111:55,2:52,2:53,54,2,2
+5	6623319	.	GA	G,GAA,GAAA	.	germline;multiallelic;normal_artifact;panel_of_normals;slippage	CONTQ=93;DP=243;ECNT=1;GERMQ=1;MBQ=20,20,20,20;MFRL=124,120,137,148;MMQ=60,60,60,60;MPOS=30,22,25;NALOD=-1.518e+00,-3.813e+01,-1.773e+01;NLOD=16.19,-9.018e+01,-9.649e+01;PON;POPAF=3.34,0.128,1.42;ROQ=93;RPA=13,12,14,15;RU=A;SEQQ=93;STR;STRANDQ=93;STRQ=1;TLOD=8.81,17.33,10.09	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:9,5,51,57:0.043,0.438,0.456:122:8,2,25,21:1,2,25,31:5,4,44,69	0/1/2/3:14,12,30,31:0.147,0.349,0.355:87:2,9,14,14:12,3,16,16:7,7,33,40
+5	13807743	.	G	GA	.	normal_artifact;panel_of_normals;slippage;weak_evidence	CONTQ=93;DP=317;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=120,97;MMQ=60,60;MPOS=19;NALOD=0.550;NLOD=19.88;PON;POPAF=3.10;ROQ=93;RPA=9,10;RU=A;SEQQ=1;STR;STRANDQ=93;STRQ=1;TLOD=3.09	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:157,5:0.035:162:70,0:85,4:79,78,2,3	0/1:115,14:0.100:129:43,5:71,6:56,59,7,7
+5	80675095	.	CA	C	.	normal_artifact;panel_of_normals;slippage	CONTQ=93;DP=291;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=109,142;MMQ=60,60;MPOS=32;NALOD=-2.677e-01;NLOD=17.55;PON;POPAF=3.91;ROQ=93;RPA=8,7;RU=A;SEQQ=12;STR;STRANDQ=93;STRQ=1;TLOD=4.89	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:148,6:0.043:154:60,2:83,4:71,77,3,3	0/1:108,11:0.102:119:54,6:54,5:53,55,5,6
+5	80675106	.	G	A	.	orientation;weak_evidence	CONTQ=93;DP=301;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=108,98;MMQ=60,60;MPOS=10;NALOD=1.97;NLOD=27.39;POPAF=5.60;ROQ=1;SEQQ=2;STRANDQ=39;TLOD=4.67	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:171,0:0.011:171:74,0:93,0:83,88,0,0	0/1:117,4:0.045:121:52,4:63,0:58,59,2,2
+5	180603249	.	CTCGCTTGG	C	.	weak_evidence	CONTQ=93;DP=547;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,171;MMQ=60,60;MPOS=67;NALOD=2.07;NLOD=34.60;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.52	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:214,0:8.520e-03:214:99,0:98,0:112,102,0,0	0/1:324,2:0.011:326:141,0:132,2:167,157,1,1
+5	180629452	.	CGT	C	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=790;ECNT=7;GERMQ=93;MBQ=20,33;MFRL=110,73;MMQ=60,60;MPOS=7;NALOD=2.13;NLOD=40.34;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=38;TLOD=4.13	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:256,0:7.353e-03:256:121,0:126,0:0|1:180629452_CGT_C:180629452:127,129,0,0	0|1:530,4:7.267e-03:534:294,2:210,2:0|1:180629452_CGT_C:180629452:268,262,2,2
+5	180629456	.	A	T	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=777;ECNT=7;GERMQ=93;MBQ=20,28;MFRL=111,73;MMQ=60,60;MPOS=4;NALOD=1.64;NLOD=38.83;POPAF=5.60;ROQ=13;SEQQ=2;STRANDQ=39;TLOD=4.61	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:247,0:7.634e-03:247:118,0:127,0:0|1:180629452_CGT_C:180629452:123,124,0,0	0|1:517,8:0.015:525:291,2:212,2:0|1:180629452_CGT_C:180629452:262,255,4,4
+5	180629458	.	C	CTG	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=777;ECNT=7;GERMQ=93;MBQ=20,34;MFRL=110,73;MMQ=60,60;MPOS=11;NALOD=2.12;NLOD=39.13;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=38;TLOD=4.14	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:248,0:7.576e-03:248:117,0:125,0:0|1:180629452_CGT_C:180629452:124,124,0,0	0|1:525,4:7.374e-03:529:304,2:208,2:0|1:180629452_CGT_C:180629452:266,259,2,2
+5	180629460	.	G	C	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=787;ECNT=7;GERMQ=93;MBQ=20,24;MFRL=111,73;MMQ=60,60;MPOS=10;NALOD=1.66;NLOD=40.34;POPAF=5.60;ROQ=25;SEQQ=2;STRANDQ=39;TLOD=4.61	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:256,0:7.353e-03:256:114,0:124,0:0|1:180629452_CGT_C:180629452:128,128,0,0	0|1:518,8:0.015:526:295,4:206,2:0|1:180629452_CGT_C:180629452:262,256,4,4
+5	180629462	.	C	CG	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=772;ECNT=7;GERMQ=93;MBQ=20,31;MFRL=111,73;MMQ=60,60;MPOS=17;NALOD=2.12;NLOD=39.43;POPAF=5.60;ROQ=93;RPA=3,4;RU=G;SEQQ=1;STR;STRANDQ=38;STRQ=93;TLOD=4.15	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:250,0:7.519e-03:250:116,0:127,0:0|1:180629452_CGT_C:180629452:125,125,0,0	0|1:518,4:7.484e-03:522:294,2:208,2:0|1:180629452_CGT_C:180629452:263,255,2,2
+5	180629466	.	C	CT	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=769;ECNT=7;GERMQ=93;MBQ=20,35;MFRL=110,73;MMQ=60,60;MPOS=21;NALOD=1.66;NLOD=40.04;POPAF=5.60;ROQ=93;RPA=1,2;RU=T;SEQQ=2;STR;STRANDQ=38;STRQ=93;TLOD=4.64	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:252,0:7.342e-03:252:116,0:130,0:0|1:180629452_CGT_C:180629452:125,127,0,0	0|1:501,4:7.638e-03:505:282,2:203,2:0|1:180629452_CGT_C:180629452:254,247,2,2
+5	180629498	.	TCCCAG	T	.	clustered_events;normal_artifact;slippage;weak_evidence	CONTQ=93;DP=588;ECNT=7;GERMQ=93;MBQ=20,20;MFRL=117,119;MMQ=60,60;MPOS=37;NALOD=-5.028e+00;NLOD=19.20;POPAF=5.60;ROQ=93;RPA=2,1;RU=CCCAG;SEQQ=1;STR;STRANDQ=93;STRQ=1;TLOD=4.47	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:180,2:0.021:182:85,0:92,2:89,91,1,1	0/1:346,2:0.011:348:185,2:146,0:173,173,1,1
+5	180631714	.	G	A	.	orientation;weak_evidence	CONTQ=93;DP=439;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=110,65;MMQ=60,60;MPOS=27;NALOD=2.01;NLOD=30.09;POPAF=4.61;ROQ=1;SEQQ=1;STRANDQ=25;TLOD=3.43	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:190,0:9.646e-03:190:95,0:94,0:96,94,0,0	0/1:236,3:0.024:239:112,3:120,0:118,118,2,1
+5	180631732	.	C	T	.	orientation;weak_evidence	CONTQ=93;DP=486;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=108,100;MMQ=60,60;MPOS=38;NALOD=2.05;NLOD=33.11;POPAF=5.60;ROQ=8;SEQQ=1;STRANDQ=32;TLOD=3.74	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:215,0:8.863e-03:215:99,0:112,0:107,108,0,0	0/1:254,4:0.022:258:129,2:123,2:128,126,2,2
+6	128064811	.	GA	G,GAAAAA	.	multiallelic;normal_artifact;panel_of_normals;slippage;weak_evidence	CONTQ=93;DP=286;ECNT=1;GERMQ=93;MBQ=20,20,20;MFRL=114,102,107;MMQ=60,60,60;MPOS=22,10;NALOD=-3.629e+00,1.50;NLOD=11.68,26.82;PON;POPAF=4.13,5.60;ROQ=93;RPA=10,9,14;RU=A;SEQQ=5;STR;STRANDQ=93;STRQ=1;TLOD=4.07,3.06	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:148,15,0:0.081,0.011:163:63,5,0:82,10,0:72,76,8,7	0/1/2:89,12,2:0.115,0.034:103:42,8,1:46,4,0:44,45,7,7
+6	158769334	.	G	A	.	clustered_events;orientation	CONTQ=93;DP=661;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=123,165;MMQ=60,60;MPOS=35;NALOD=2.23;NLOD=49.97;POPAF=5.60;ROQ=1;SEQQ=26;STRANDQ=30;TLOD=7.53	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:309,0:5.887e-03:309:156,0:152,0:161,148,0,0	0/1:315,4:0.017:319:167,4:148,0:166,149,2,2
+6	158769358	.	TGCGCCTCC	T	.	clustered_events;weak_evidence	CONTQ=93;DP=1021;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=117,178;MMQ=60,60;MPOS=65;NALOD=2.38;NLOD=70.02;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.08	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:441,0:4.227e-03:441:215,0:189,0:223,218,0,0	0/1:546,2:6.888e-03:548:250,0:230,2:277,269,1,1
+6	158769371	.	C	T	.	clustered_events;orientation;weak_evidence	CONTQ=93;DP=1028;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=117,157;MMQ=60,60;MPOS=41;NALOD=2.38;NLOD=71.05;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=20;TLOD=4.06	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:447,1:4.179e-03:448:229,0:215,0:224,223,1,0	0/1:553,2:6.786e-03:555:284,2:266,0:281,272,1,1
+7	32209543	.	GA	G	.	normal_artifact;slippage	CONTQ=93;DP=307;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=118,124;MMQ=60,60;MPOS=37;NALOD=-1.882e-02;NLOD=20.09;POPAF=2.92;ROQ=93;RPA=10,9;RU=A;SEQQ=22;STR;STRANDQ=93;STRQ=1;TLOD=5.89	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:164,6:0.038:170:73,0:88,6:81,83,3,3	0/1:111,14:0.122:125:53,5:56,9:56,55,6,8
+7	74338490	.	C	T	.	PASS	CONTQ=93;DP=693;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=115,197;MMQ=60,60;MPOS=48;NALOD=2.15;NLOD=41.26;POPAF=5.60;ROQ=7;SEQQ=22;STRANDQ=28;TLOD=7.08	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:257,0:7.112e-03:257:126,0:130,0:134,123,0,0	0/1:415,4:0.014:419:197,2:213,2:212,203,2,2
+8	10622748	.	G	A	.	PASS	CONTQ=93;DP=310;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=119,103;MMQ=60,60;MPOS=44;NALOD=1.81;NLOD=18.98;POPAF=4.61;ROQ=7;SEQQ=24;STRANDQ=46;TLOD=7.27	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:123,0:0.015:123:64,0:59,0:62,61,0,0	0/1:175,6:0.041:181:90,2:84,3:90,85,3,3
+8	10623036	.	G	A	.	clustered_events	CONTQ=93;DP=585;ECNT=8;GERMQ=93;MBQ=20,20;MFRL=108,115;MMQ=60,60;MPOS=22;NALOD=2.05;NLOD=33.28;POPAF=2.64;ROQ=93;SEQQ=93;STRANDQ=93;TLOD=114.01	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:211,0:8.866e-03:211:96,0:113,0:105,106,0,0	0/1:333,36:0.098:369:154,18:173,18:164,169,18,18
+8	10623040	.	G	A	.	clustered_events;orientation	CONTQ=93;DP=593;ECNT=8;GERMQ=93;MBQ=20,20;MFRL=108,113;MMQ=60,60;MPOS=49;NALOD=1.75;NLOD=32.43;POPAF=5.60;ROQ=5;SEQQ=28;STRANDQ=29;TLOD=7.67	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:205,0:8.962e-03:205:93,0:109,0:102,103,0,0	0/1:358,4:0.015:362:168,2:185,2:176,182,2,2
+8	10623053	.	C	T,G	.	clustered_events;multiallelic	CONTQ=93;DP=600;ECNT=8;GERMQ=93;MBQ=20,20,33;MFRL=107,114,96;MMQ=60,60,60;MPOS=28,1;NALOD=1.74,1.73;NLOD=32.21,31.60;POPAF=4.61,5.60;ROQ=72;SEQQ=93;STRANDQ=93;TLOD=50.23,4.67	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:201,0,0:9.091e-03,9.192e-03:201:93,0,0:107,0,0:100,101,0,0	0/1/2:350,30,2:0.082,9.645e-03:382:161,13,0:178,16,2:172,178,15,17
+8	10623057	.	C	T	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=595;ECNT=8;GERMQ=93;MBQ=20,24;MFRL=107,96;MMQ=60,60;MPOS=5;NALOD=2.03;NLOD=32.21;POPAF=4.61;ROQ=1;SEQQ=1;STRANDQ=21;TLOD=4.38	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:206,0:9.174e-03:206:96,0:104,0:0|1:10623057_C_T:10623057:102,104,0,0	0|1:387,2:9.756e-03:389:167,0:198,2:0|1:10623057_C_T:10623057:190,197,1,1
+8	10623059	.	CCAGCAA	C	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=614;ECNT=8;GERMQ=93;MBQ=20,34;MFRL=107,96;MMQ=60,60;MPOS=7;NALOD=2.05;NLOD=33.41;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.36	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:214,0:8.850e-03:214:95,0:106,0:0|1:10623057_C_T:10623057:107,107,0,0	0|1:398,2:9.479e-03:400:169,0:206,2:0|1:10623057_C_T:10623057:195,203,1,1
+8	10623068	.	C	G	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=550;ECNT=8;GERMQ=93;MBQ=20,31;MFRL=108,96;MMQ=60,60;MPOS=10;NALOD=2.02;NLOD=31.31;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=22;TLOD=4.46	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:196,0:9.434e-03:196:86,0:100,0:0|1:10623057_C_T:10623057:95,101,0,0	0|1:352,2:0.011:354:147,0:194,2:0|1:10623057_C_T:10623057:172,180,1,1
+8	10623070	.	T	TTTGCTG	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=550;ECNT=8;GERMQ=93;MBQ=20,26;MFRL=108,96;MMQ=60,60;MPOS=12;NALOD=2.01;NLOD=30.70;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.45	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:192,0:9.615e-03:192:84,0:101,0:0|1:10623057_C_T:10623057:93,99,0,0	0|1:356,2:0.011:358:149,0:193,2:0|1:10623057_C_T:10623057:174,182,1,1
+8	10623073	.	A	G	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=540;ECNT=8;GERMQ=93;MBQ=20,33;MFRL=108,96;MMQ=60,60;MPOS=21;NALOD=2.00;NLOD=30.10;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=22;TLOD=4.47	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:188,0:9.804e-03:188:83,0:99,0:0|1:10623057_C_T:10623057:91,97,0,0	0|1:350,2:0.011:352:142,0:183,2:0|1:10623057_C_T:10623057:172,178,1,1
+8	124557887	.	CA	C	.	PASS	CONTQ=93;DP=461;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=117,123;MMQ=60,60;MPOS=31;NALOD=1.74;NLOD=31.80;POPAF=4.31;ROQ=93;RPA=7,6;RU=A;SEQQ=60;STR;STRANDQ=93;STRQ=93;TLOD=9.60	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:199,0:9.203e-03:199:99,0:93,0:98,101,0,0	0/1:204,29:0.118:233:104,13:98,16:100,104,14,15
+8	143539082	.	C	T	.	orientation	CONTQ=93;DP=638;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=113,100;MMQ=60,60;MPOS=31;NALOD=2.11;NLOD=37.93;POPAF=5.60;ROQ=1;SEQQ=16;STRANDQ=36;TLOD=6.44	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:239,0:7.722e-03:239:123,0:115,0:116,123,0,0	0/1:368,6:0.020:374:182,2:180,4:185,183,3,3
+8	144509784	.	G	A	.	normal_artifact;orientation;weak_evidence	CONTQ=93;DP=442;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=110,122;MMQ=60,60;MPOS=40;NALOD=-1.316e+00;NLOD=18.63;POPAF=4.61;ROQ=1;SEQQ=4;STRANDQ=23;TLOD=5.00	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:152,2:0.025:154:71,0:78,2:76,76,1,1	0/1:274,2:0.014:276:139,2:126,0:136,138,1,1
+9	2039695	.	C	T	.	orientation	CONTQ=93;DP=329;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=122,136;MMQ=60,60;MPOS=50;NALOD=1.81;NLOD=18.62;POPAF=5.60;ROQ=1;SEQQ=25;STRANDQ=44;TLOD=7.39	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:116,0:0.015:116:59,0:52,0:61,55,0,0	0/1:199,6:0.036:205:109,0:83,6:103,96,3,3
+9	34512304	.	C	T	.	orientation;weak_evidence	CONTQ=93;DP=300;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=111,119;MMQ=60,60;MPOS=40;NALOD=1.96;NLOD=26.84;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=39;TLOD=4.50	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:166,0:0.011:166:63,0:103,0:84,82,0,0	0/1:119,4:0.043:123:70,0:47,4:60,59,2,2
+9	87643385	.	C	T	.	normal_artifact;orientation;panel_of_normals;weak_evidence	CONTQ=93;DP=141;ECNT=1;GERMQ=93;MBQ=20,24;MFRL=125,68;MMQ=60,60;MPOS=12;NALOD=-1.360e+00;NLOD=11.40;PON;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=33;TLOD=3.47	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:76,2:0.035:78:45,0:29,2:27,49,1,1	0/1:49,2:0.062:51:20,0:26,2:21,28,1,1
+9	128250849	.	GT	AG	.	normal_artifact;orientation;panel_of_normals	CONTQ=93;DP=176;ECNT=1;GERMQ=93;MBQ=20,28;MFRL=96,106;MMQ=60,60;MPOS=17;NALOD=1.28;NLOD=9.90;PON;POPAF=5.60;ROQ=1;SEQQ=45;STRANDQ=42;TLOD=9.37	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:66,1:0.028:67:35,1:27,0:33,33,1,0	0/1:91,4:0.058:95:45,0:44,4:45,46,2,2
+9	128253013	.	C	T	.	orientation;weak_evidence	CONTQ=93;DP=564;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=116,127;MMQ=60,60;MPOS=34;NALOD=2.08;NLOD=35.47;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=30;TLOD=3.38	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:224,0:8.338e-03:224:102,0:119,0:118,106,0,0	0/1:329,4:0.017:333:129,0:193,4:169,160,2,2
+9	131052571	.	CT	C	.	PASS	CONTQ=93;DP=644;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=117,72;MMQ=60,60;MPOS=8;NALOD=1.92;NLOD=49.07;POPAF=5.60;ROQ=93;SEQQ=6;STRANDQ=28;TLOD=4.82	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:318,0:6.061e-03:318:143,0:168,0:0|1:131052571_CT_C:131052571:159,159,0,0	0|1:321,2:0.011:323:145,2:165,0:0|1:131052571_CT_C:131052571:159,162,1,1
+9	131052574	.	CCTGTACAGCTGAGGCT	C	.	weak_evidence	CONTQ=93;DP=623;ECNT=2;GERMQ=93;MBQ=20,20;MFRL=119,72;MMQ=60,60;MPOS=6;NALOD=1.91;NLOD=48.16;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.85	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:311,0:6.173e-03:311:142,0:162,0:0|1:131052571_CT_C:131052571:154,157,0,0	0|1:307,2:0.012:309:142,2:159,0:0|1:131052571_CT_C:131052571:150,157,1,1
+9	135818985	.	C	G	.	clustered_events;haplotype;orientation;weak_evidence	CONTQ=93;DP=478;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=114,182;MMQ=60,60;MPOS=48;NALOD=1.99;NLOD=29.20;POPAF=5.60;ROQ=1;SEQQ=2;STRANDQ=22;TLOD=4.63	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:192,0:0.010:192:94,0:90,0:0|1:135818985_C_G:135818985:97,95,0,0	0|1:284,2:0.013:286:139,0:139,2:0|1:135818985_C_G:135818985:150,134,1,1
+9	135818986	.	T	TGGG	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=486;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=113,182;MMQ=60,60;MPOS=49;NALOD=2.00;NLOD=30.10;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=38;TLOD=4.62	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:198,0:9.804e-03:198:96,0:92,0:0|1:135818985_C_G:135818985:100,98,0,0	0|1:286,2:0.013:288:137,0:137,2:0|1:135818985_C_G:135818985:151,135,1,1
+9	135818987	.	TTCCC	T	.	clustered_events;haplotype;weak_evidence	CONTQ=93;DP=539;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=111,182;MMQ=60,60;MPOS=53;NALOD=2.04;NLOD=32.81;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=38;TLOD=4.53	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:217,0:9.009e-03:217:97,0:92,0:0|1:135818985_C_G:135818985:109,108,0,0	0|1:320,2:0.012:322:143,0:139,2:0|1:135818985_C_G:135818985:168,152,1,1
+9	135818995	.	C	T	.	clustered_events;orientation	CONTQ=93;DP=566;ECNT=4;GERMQ=93;MBQ=20,20;MFRL=111,88;MMQ=60,60;MPOS=31;NALOD=2.05;NLOD=33.11;POPAF=5.60;ROQ=4;SEQQ=37;STRANDQ=38;TLOD=8.60	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:219,0:8.863e-03:219:109,0:110,0:110,109,0,0	0/1:326,6:0.022:332:167,2:154,4:170,156,3,3
+9	135821422	.	G	GCC	.	clustered_events;haplotype;normal_artifact;weak_evidence	CONTQ=93;DP=652;ECNT=3;GERMQ=93;MBQ=20,20;MFRL=117,70;MMQ=60,60;MPOS=21;NALOD=-4.672e+00;NLOD=34.67;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=27;TLOD=4.40	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:272,2:0.014:274:128,2:136,0:0|1:135821422_G_GCC:135821422:136,136,1,1	0|1:376,2:0.010:378:168,0:192,0:0|1:135821422_G_GCC:135821422:183,193,1,1
+9	135821423	.	A	ACTCTCTCCCACGG	.	clustered_events;haplotype;normal_artifact;weak_evidence	CONTQ=93;DP=644;ECNT=3;GERMQ=93;MBQ=20,23;MFRL=116,70;MMQ=60,60;MPOS=10;NALOD=-4.690e+00;NLOD=33.78;POPAF=5.60;ROQ=93;SEQQ=1;STRANDQ=93;TLOD=4.41	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:267,2:0.014:269:122,2:130,0:0|1:135821422_G_GCC:135821422:133,134,1,1	0|1:373,2:0.010:375:169,0:189,2:0|1:135821422_G_GCC:135821422:182,191,1,1
+9	135821425	.	A	C	.	clustered_events;haplotype;normal_artifact;orientation;weak_evidence	CONTQ=93;DP=631;ECNT=3;GERMQ=93;MBQ=20,24;MFRL=116,70;MMQ=60,60;MPOS=10;NALOD=-4.709e+00;NLOD=32.88;POPAF=5.60;ROQ=1;SEQQ=1;STRANDQ=21;TLOD=4.43	GT:AD:AF:DP:F1R2:F2R1:PGT:PID:PS:SB	0|0:259,2:0.014:261:121,2:128,0:0|1:135821422_G_GCC:135821422:128,131,1,1	0|1:366,2:0.010:368:163,0:194,2:0|1:135821422_G_GCC:135821422:178,188,1,1
+X	71141277	.	ACAG	A	.	panel_of_normals;slippage	CONTQ=93;DP=465;ECNT=1;GERMQ=93;MBQ=20,20;MFRL=107,121;MMQ=60,60;MPOS=38;NALOD=1.70;NLOD=27.63;PON;POPAF=5.60;ROQ=93;RPA=4,3;RU=CAG;SEQQ=40;STR;STRANDQ=93;STRQ=1;TLOD=12.75	GT:AD:AF:DP:F1R2:F2R1:SB	0/0:175,0:0.010:175:77,0:90,0:87,88,0,0	0/1:231,8:0.039:239:113,2:109,6:115,116,4,4
